@@ -7,6 +7,6 @@
 </head>
 <body>
     <h1>Welcome</h1>
-    <a href="?url=Home/Chui/Khải">Chửi thằng khải</a>
+    <a href="?url=Product/DanhGia/1">Demo phiếu chấm điểm</a>
 </body>
 </html>

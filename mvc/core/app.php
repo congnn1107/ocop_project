@@ -1,41 +1,41 @@
 <?php
     //echo "\napp required";
     class App{
-        var $controller = 'Home';
-        var $action ='Welcome';
+
+        var $controller;
+        var $action;
         var $params=[];
+        private $defaultController = "Home";
+        private $defaultAction = "Welcome";
 
         function __construct(){
-            if(isset($_GET)){
-               $url = $this->getProcess();
-               $temp = array_shift($url);
-               if(file_exists('./mvc/controller/'.$temp.'Controller.php')){
-                   require_once './mvc/controller/'.$this->controller.'Controller.php';
-                   $this->controller= $temp;
-                   $temp = array_shift($url);
-                   $obj = new $this->controller;
-                   if(method_exists($this->controller,$temp)){
-                       $this->action = $temp;
+            $url = $this->getProcess();
+            $temp = array_shift($url);
+            if(file_exists('./mvc/controller/'.$temp.'Controller.php')){
+                 $this->controller= $temp;
+                 $temp = array_shift($url);
+                 require_once './mvc/controller/'.$this->controller.'Controller.php';
+                 if(method_exists($this->controller,$temp)){
+                    $this->action = $temp;
 
-                       $this->params = array_values($url);
-
-                       call_user_func_array([$obj,$this->action],$this->params);
-                    }
-                    else{
-                        require_once "./mvc/views/404.php";   
-                    }
-               }else{
-                   require_once "./mvc/views/404.php";
-               }
+                    $this->params = array_values($url);
+                 }
+                 else{
+                     $this->action = $this->defaultAction;
+                 }
+            }else{
+                 $this->controller = $this->defaultController;
+                 $this->action=$this->defaultAction;
+                 require_once './mvc/controller/'.$this->controller.'Controller.php';
             }
-            
+            $obj = new $this->controller;
+            call_user_func_array([$obj,$this->action],$this->params);
 
         }
 
         function getProcess(){
             $url = explode('/',filter_var(trim($_GET['url'])));
 
-            return $url;
-            
+            return $url;   
         }
     }
