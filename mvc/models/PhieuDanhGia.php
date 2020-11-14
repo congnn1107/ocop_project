@@ -9,7 +9,7 @@
          * Note: lỗi ở các nhóm không có tiêu chí con (12/11/2020)
          */
         function get($id){
-            $sql = "select distinct id_phan, phan from test_bo_tieu_chi where id='$id'";
+            $sql = "select distinct id_phan, phan from tb_bo_tieu_chi where id='$id'";
             
             $parts = $this->select($sql);
             // Xử lí đưa ra object phiếu chấm điểm
@@ -24,7 +24,7 @@
                 ];
 
                 //lấy ra và duyệt từng nhóm tiêu chí theo phần
-                $sql = "select distinct id_nhom_tc,nhom_tc from test_bo_tieu_chi where id = '$id' and id_phan = '".$partRow['id']."' ";
+                $sql = "select distinct id_nhom_tc,nhom_tc from tb_bo_tieu_chi where id = '$id' and id_phan = '".$partRow['id']."' ";
                 $groups = $this->select($sql);
                
                 $groupSet=[];
@@ -35,7 +35,7 @@
                     ];
 
                     //lấy ra và duyệt từng tiêu chí theo nhóm tiêu chí
-                    $sql = "select distinct id_tieu_chi,tieu_chi from test_bo_tieu_chi where id = '$id' and id_phan = '".$partRow['id']."' and id_nhom_tc = '".$groupRow['id']."'";
+                    $sql = "select distinct id_tieu_chi,tieu_chi from tb_bo_tieu_chi where id = '$id' and id_phan = '".$partRow['id']."' and id_nhom_tc = '".$groupRow['id']."'";
                     $cacTieuChi = $this->select($sql);
                     $tieuChiSet=[];
                     foreach($cacTieuChi as $tieuChi){
@@ -45,7 +45,7 @@
                         ];
 
                         //lấy ra các lựa chọn theo từng tiêu chí
-                        $sql = "select id_lua_chon, lua_chon, diem from test_bo_tieu_chi where id = '$id'
+                        $sql = "select id_lua_chon, lua_chon, diem from tb_bo_tieu_chi where id = '$id'
                             and id_phan = '".$partRow['id']."' and id_nhom_tc = '".$groupRow['id']."'
                             and id_tieu_chi = '".$tieuChiRow['id']."'
                             ";

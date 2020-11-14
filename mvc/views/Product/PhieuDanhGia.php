@@ -17,10 +17,14 @@
         div{
             margin-left: 3rem;
         }
+        form button{
+            display: block;
+            margin: 2rem auto;
+        }
     </style>
 </head>
 <body>
-    <form action="./TestLinhTinh/recieve.php" method="post">
+    <form id="form" action="./TestLinhTinh/recieve.php" method="post">
         <?php 
             $phieu = $params['data'];
 
@@ -36,7 +40,9 @@
                         $choices = $tc['choices'];
                         foreach($choices as $choice){
                             echo '<div>';
-                            echo '<input type="radio" name="tieuchi['.$phan['id'].']['.$nhom['id'].']['.$tc['id'].']" value = "'.$choice['id'].'-'.$choice['score'].'" id="">';
+                            echo '<input type="radio" name="tieuchi['.$phan['id'].']['.$nhom['id'].']['.$tc['id'].']" value = "'.$choice['id'].'-'.$choice['score'].'"';
+                            // echo $choice['id']==1?"checked ":"";
+                            echo 'id="">';
                             echo '<span>'.$choice['content'].'('.$choice['score'].' điểm)</span>';
                             echo '</div>';
                         }
@@ -44,8 +50,27 @@
                 }
             }
         ?>
-        <button type="submit">Hoàn Thành</button>
+        <button id="btnOK" type="submit">Hoàn Thành</button>
     </form>
+    <script>
+        var enter = false;
+        document.getElementById("form").onkeydown= function(event){
+            if(event.key=="Enter"){
+                enter = true;
+            }
+        }
+        document.getElementById("form").onkeyup= function(event){
+            if(event.key=="Enter"){
+                enter = false;
+            }
+        }
+        document.getElementById("btnOK").onclick=function(event){
+            if(enter){
+                event.preventDefault();
+                return false;
+            }
+        }
+    </script>
 
 </body>
 </html>

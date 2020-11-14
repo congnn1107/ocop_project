@@ -8,5 +8,6 @@
 <body>
     <h1>Welcome</h1>
     <a href="?url=Product/DanhGia/1">Demo phiếu chấm điểm</a>
+    <a href="?url=Login">Đăng nhập</a>
 </body>
 </html>

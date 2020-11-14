@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Nov 07, 2020 at 09:24 PM
+-- Generation Time: Nov 15, 2020 at 12:42 AM
 -- Server version: 8.0.22-0ubuntu0.20.04.2
 -- PHP Version: 7.4.3
 
@@ -51,242 +51,6 @@ INSERT INTO `tb_bo_ql` (`id_bo`, `ten_bo`) VALUES
 --
 
 CREATE TABLE `tb_bo_tieu_chi` (
-  `nhom_sp` int NOT NULL,
-  `phan` int NOT NULL,
-  `nhom_tieu_chi` int NOT NULL,
-  `tieu_chi` int DEFAULT NULL,
-  `lua_chon` int NOT NULL,
-  `diem` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Dumping data for table `tb_bo_tieu_chi`
---
-
-INSERT INTO `tb_bo_tieu_chi` (`nhom_sp`, `phan`, `nhom_tieu_chi`, `tieu_chi`, `lua_chon`, `diem`) VALUES
-(1, 1, 1, 1, 1, 0),
-(1, 1, 1, 1, 2, 1),
-(1, 1, 2, 2, 3, 0),
-(1, 1, 2, 2, 4, 1),
-(1, 2, 4, 5, 8, 1),
-(1, 2, 4, 5, 9, 4),
-(1, 3, 6, 7, 13, 0),
-(1, 3, 6, 7, 14, 3);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tb_lua_chon`
---
-
-CREATE TABLE `tb_lua_chon` (
-  `id` int NOT NULL,
-  `contents` text COLLATE utf8_unicode_ci NOT NULL,
-  `notes` text COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Dumping data for table `tb_lua_chon`
---
-
-INSERT INTO `tb_lua_chon` (`id`, `contents`, `notes`) VALUES
-(1, 'Sử dụng nguyên liệu có nguồn gốc trong tỉnh dưới 50%', ''),
-(2, 'Sử dụng nguyên liệu có nguồn gốc trong tỉnh từ 50% đến dưới 75%', ''),
-(3, 'Phân loại', ''),
-(4, 'Sơ chế', ''),
-(5, 'Sơ chế (rửa, làm sạch)', ''),
-(6, 'Phát triển sản phẩm của nhà sản xuất ủy thác, chỉ thay đổi nhãn hiệu', ''),
-(7, 'Hộ gia đình có đăng ký kinh doanh, tổ hợp tác (có giấy đăng ký kinh doanh của tổ trưởng). Công ty Trách nhiệm hữu hạn (TNHH) 1 thành viên, doanh nghiệp tư nhân (DNTN)', ''),
-(8, 'Thị trường trong huyện', ''),
-(9, 'Thị trường quốc tế', ''),
-(10, 'Không đồng đều', ''),
-(11, 'Không đồng đều, chấp nhận được', ''),
-(12, 'Đồng đều', ''),
-(13, 'Không có', ''),
-(14, 'Có 1-2 chỉ tiêu', ''),
-(15, 'Độc đáo', ''),
-(16, 'Tương đối độc đáo', '');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tb_nganh_sp`
---
-
-CREATE TABLE `tb_nganh_sp` (
-  `id_nganh` int NOT NULL,
-  `ten_nganh` varchar(100) COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Dumping data for table `tb_nganh_sp`
---
-
-INSERT INTO `tb_nganh_sp` (`id_nganh`, `ten_nganh`) VALUES
-(6, 'Dịch vụ du lịch nông thôn và bán hàng'),
-(2, 'Đồ uống'),
-(3, 'Thảo dược'),
-(4, 'Thủ công mỹ nghệ, trang trí'),
-(1, 'Thực phẩm'),
-(5, 'Vải, may mặc');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tb_nhom_sp`
---
-
-CREATE TABLE `tb_nhom_sp` (
-  `id_nhom_sp` int NOT NULL,
-  `ten_nhom_sp` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `nganh_sp` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Dumping data for table `tb_nhom_sp`
---
-
-INSERT INTO `tb_nhom_sp` (`id_nhom_sp`, `ten_nhom_sp`, `nganh_sp`) VALUES
-(1, 'Thực phẩm tươi sống', 1),
-(2, 'Thực phẩm thô, sơ chế', 1),
-(3, 'Thực phẩm chế biến', 1),
-(4, 'Gia vị', 1),
-(5, 'Chè', 1),
-(6, 'Cà phê, ca cao', 1),
-(7, 'Đồ uống có cồn', 2),
-(8, 'Đồ uống không cồn', 2),
-(9, 'Thực phẩm chức năng, thuốc từ dược liệu, thuốc Y học cổ truyền', 3),
-(10, 'Mỹ phẩm', 3),
-(11, 'Trang thiết bị, dụng cụ y tế', 3),
-(12, 'Thảo dược khác', 3),
-(13, 'Thủ công mỹ nghệ, trang trí', 4),
-(14, 'Thủ công mỹ nghệ gia dụng', 4),
-(15, 'Vải, may mặc', 5),
-(16, 'Dịch vụ du lịch - truyền thống - lễ hội', 6);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tb_nhom_tieu_chi`
---
-
-CREATE TABLE `tb_nhom_tieu_chi` (
-  `id` int NOT NULL,
-  `content` text COLLATE utf8_unicode_ci NOT NULL,
-  `notes` text COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Dumping data for table `tb_nhom_tieu_chi`
---
-
-INSERT INTO `tb_nhom_tieu_chi` (`id`, `content`, `notes`) VALUES
-(1, 'Tổ chức sản xuất', ''),
-(2, 'Phát triển sản phẩm', ''),
-(3, 'Sức mạnh cộng đồng', ''),
-(4, 'Tiếp thị', ''),
-(5, 'Chỉ tiêu cảm quan', ''),
-(6, 'Dinh dưỡng', 'Chỉ ra hàm lượng của các chỉ tiêu dinh dưỡng như: Protit, Lipid, Vitamin,... (theo phiếu kiểm nghiệm do cơ quan có thẩm quyền cấp)'),
-(7, 'Tính độc đáo', 'Chất lượng: Có nét riêng, khác biệt, không lẫn với sản phẩm khác, tiềm năng thành thương hiệu của địa phương');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tb_phan`
---
-
-CREATE TABLE `tb_phan` (
-  `id` int NOT NULL,
-  `content` text COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Dumping data for table `tb_phan`
---
-
-INSERT INTO `tb_phan` (`id`, `content`) VALUES
-(1, 'A. Sản phẩm và sức mạnh cộng đồng'),
-(2, 'B. Khả năng tiếp thị'),
-(3, 'C. Chất lượng sản phẩm');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tb_phan_nhom_sp`
---
-
-CREATE TABLE `tb_phan_nhom_sp` (
-  `id_phan_nhom` int NOT NULL,
-  `ten_phan_nhom` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `nhom` int NOT NULL,
-  `bo_ql` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Dumping data for table `tb_phan_nhom_sp`
---
-
-INSERT INTO `tb_phan_nhom_sp` (`id_phan_nhom`, `ten_phan_nhom`, `nhom`, `bo_ql`) VALUES
-(1, 'Rau, củ, quả, hạt tươi', 1, 1),
-(2, 'Thịt, trứng, sữa tươi', 1, 1),
-(3, 'Gạo, ngũ cốc', 2, 1),
-(4, 'Mật ong, các sản phẩm từ mật ong, mật khác', 2, 1),
-(5, 'Đồ ăn nhanh', 3, 2),
-(6, 'Chế biến từ gạo, ngũ cốc', 3, 1),
-(7, 'Chế biến từ rau, củ, quả, hạt', 3, 1),
-(8, 'Chế biến từ thịt, trứng, sữa', 3, 1),
-(9, 'Chế biến từ thủy, hải sản', 3, 1),
-(10, 'Tương, nước mắm, gia vị lỏng khác', 4, 1),
-(11, 'Gia vị khác', 4, 1),
-(12, 'Chè tươi, chế biến', 5, 1),
-(13, 'Các sản phẩm khác từ chè, trà', 5, 1),
-(14, 'Cà phê, ca cao', 6, 1),
-(15, 'Rượu trắng', 7, 2),
-(16, 'Đồ uống có cồn khác', 7, 2),
-(17, 'Nước khoáng thiên nhiên, nước uống tinh khiết', 8, 3),
-(18, 'Đồ uống không cồn', 8, 2),
-(19, 'Thực phẩm chức năng, thuốc từ dược liệu, thuốc Y học cổ truyền', 9, 3),
-(20, 'Mỹ phẩm', 10, 3),
-(21, 'Trang thiết bị, dụng cụ y tế', 11, 3),
-(22, 'Thảo dược khác', 12, 3),
-(23, 'Thủ công mỹ nghệ, trang trí', 13, 4),
-(24, 'Thủ công mỹ nghệ gia dụng', 14, 4),
-(25, 'Vải, may mặc', 15, 2),
-(26, 'Dịch vụ du lịch - truyền thống - lễ hội', 16, 5);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tb_tieu_chi`
---
-
-CREATE TABLE `tb_tieu_chi` (
-  `id` int NOT NULL,
-  `content` text COLLATE utf8_unicode_ci NOT NULL,
-  `notes` text COLLATE utf8_unicode_ci
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Dumping data for table `tb_tieu_chi`
---
-
-INSERT INTO `tb_tieu_chi` (`id`, `content`, `notes`) VALUES
-(1, 'Nguồn nguyên liệu', NULL),
-(2, 'Gia tăng giá trị', NULL),
-(3, 'Nguồn gốc ý tưởng sản phẩm', NULL),
-(4, 'Loại hình tổ chức sản xuất, kinh doanh', NULL),
-(5, 'Khu vực phân phối chính', NULL),
-(6, 'Kích thước, hình dạng bề ngoài', NULL),
-(7, 'Dinh dưỡng', NULL),
-(8, 'Tính độc đáo', NULL);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `test_bo_tieu_chi`
---
-
-CREATE TABLE `test_bo_tieu_chi` (
   `id` int NOT NULL,
   `id_phan` int NOT NULL,
   `phan` text CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
@@ -301,10 +65,10 @@ CREATE TABLE `test_bo_tieu_chi` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `test_bo_tieu_chi`
+-- Dumping data for table `tb_bo_tieu_chi`
 --
 
-INSERT INTO `test_bo_tieu_chi` (`id`, `id_phan`, `phan`, `id_nhom_tc`, `nhom_tc`, `id_tieu_chi`, `tieu_chi`, `id_lua_chon`, `lua_chon`, `diem`, `time`) VALUES
+INSERT INTO `tb_bo_tieu_chi` (`id`, `id_phan`, `phan`, `id_nhom_tc`, `nhom_tc`, `id_tieu_chi`, `tieu_chi`, `id_lua_chon`, `lua_chon`, `diem`, `time`) VALUES
 (1, 1, 'Phần A: SẢN PHẨM VÀ SỨC MẠNH CỦA CỘNG ĐỒNG (35 Điểm)', 1, 'TỔ CHỨC SẢN XUẤT', 1, 'Nguồn nguyên liệu', 1, 'Sử dụng nguyên liệu có nguồn gốc trong tỉnh dưới 50%', 1, '2020-11-07 05:03:18'),
 (1, 1, 'Phần A: SẢN PHẨM VÀ SỨC MẠNH CỦA CỘNG ĐỒNG (35 Điểm)', 1, 'TỔ CHỨC SẢN XUẤT', 1, 'Nguồn nguyên liệu', 2, 'Sử dụng nguyên liệu có nguồn gốc trong tỉnh từ 50% đến dưới 75%', 2, '2020-11-07 05:03:18'),
 (1, 1, 'Phần A: SẢN PHẨM VÀ SỨC MẠNH CỦA CỘNG ĐỒNG (35 Điểm)', 1, 'TỔ CHỨC SẢN XUẤT', 1, 'Nguồn nguyên liệu', 3, 'Sử dụng nguyên liệu có nguồn gốc trong tỉnh từ 75% đến 100%', 3, '2020-11-07 05:03:18'),
@@ -422,50 +186,122 @@ INSERT INTO `test_bo_tieu_chi` (`id`, `id_phan`, `phan`, `id_nhom_tc`, `nhom_tc`
 -- --------------------------------------------------------
 
 --
--- Table structure for table `test_ds_tieu_chi`
+-- Table structure for table `tb_nganh_sp`
 --
 
-CREATE TABLE `test_ds_tieu_chi` (
-  `id` int NOT NULL,
-  `content` text COLLATE utf8_unicode_ci,
-  `parent` int NOT NULL
+CREATE TABLE `tb_nganh_sp` (
+  `id_nganh` int NOT NULL,
+  `ten_nganh` varchar(100) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `test_ds_tieu_chi`
+-- Dumping data for table `tb_nganh_sp`
 --
 
-INSERT INTO `test_ds_tieu_chi` (`id`, `content`, `parent`) VALUES
-(1, 'Sản phẩm và sức mạnh của cộng đồng', 0),
-(2, 'Tổ chức sản xuất', 1),
-(3, 'Nguồn nguyên liệu', 2),
-(4, 'Sử dụng nguyên liệu có nguồn gốc trong tỉnh dưới 50%', 3),
-(5, 'Sử dụng nguyên liệu có nguồn gốc trong tỉnh từ 50% đến dưới 75%', 3),
-(6, 'Sử dụng nguyên liệu có nguồn gốc trong tỉnh từ 75% đến 100%', 3),
-(7, 'Gia tăng giá trị', 2),
-(8, 'Phân loại, sơ chê', 7),
-(9, 'Chế biến đơn giản', 7),
-(10, 'Chế biến', 7),
-(11, 'Chế biến sâu', 7),
-(12, 'Tiêu chí B', 0);
+INSERT INTO `tb_nganh_sp` (`id_nganh`, `ten_nganh`) VALUES
+(6, 'Dịch vụ du lịch nông thôn và bán hàng'),
+(2, 'Đồ uống'),
+(3, 'Thảo dược'),
+(4, 'Thủ công mỹ nghệ, trang trí'),
+(1, 'Thực phẩm'),
+(5, 'Vải, may mặc');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `test_nhom_sp_bo_tc`
+-- Table structure for table `tb_nhom_sp`
 --
 
-CREATE TABLE `test_nhom_sp_bo_tc` (
+CREATE TABLE `tb_nhom_sp` (
+  `id_nhom_sp` int NOT NULL,
+  `ten_nhom_sp` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `nganh_sp` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `tb_nhom_sp`
+--
+
+INSERT INTO `tb_nhom_sp` (`id_nhom_sp`, `ten_nhom_sp`, `nganh_sp`) VALUES
+(1, 'Thực phẩm tươi sống', 1),
+(2, 'Thực phẩm thô, sơ chế', 1),
+(3, 'Thực phẩm chế biến', 1),
+(4, 'Gia vị', 1),
+(5, 'Chè', 1),
+(6, 'Cà phê, ca cao', 1),
+(7, 'Đồ uống có cồn', 2),
+(8, 'Đồ uống không cồn', 2),
+(9, 'Thực phẩm chức năng, thuốc từ dược liệu, thuốc Y học cổ truyền', 3),
+(10, 'Mỹ phẩm', 3),
+(11, 'Trang thiết bị, dụng cụ y tế', 3),
+(12, 'Thảo dược khác', 3),
+(13, 'Thủ công mỹ nghệ, trang trí', 4),
+(14, 'Thủ công mỹ nghệ gia dụng', 4),
+(15, 'Vải, may mặc', 5),
+(16, 'Dịch vụ du lịch - truyền thống - lễ hội', 6);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_nhom_sp_bo_tc`
+--
+
+CREATE TABLE `tb_nhom_sp_bo_tc` (
   `nhomsp` int NOT NULL,
   `bo_tc` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `test_nhom_sp_bo_tc`
+-- Dumping data for table `tb_nhom_sp_bo_tc`
 --
 
-INSERT INTO `test_nhom_sp_bo_tc` (`nhomsp`, `bo_tc`) VALUES
+INSERT INTO `tb_nhom_sp_bo_tc` (`nhomsp`, `bo_tc`) VALUES
 (1, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_phan_nhom_sp`
+--
+
+CREATE TABLE `tb_phan_nhom_sp` (
+  `id_phan_nhom` int NOT NULL,
+  `ten_phan_nhom` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `nhom` int NOT NULL,
+  `bo_ql` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `tb_phan_nhom_sp`
+--
+
+INSERT INTO `tb_phan_nhom_sp` (`id_phan_nhom`, `ten_phan_nhom`, `nhom`, `bo_ql`) VALUES
+(1, 'Rau, củ, quả, hạt tươi', 1, 1),
+(2, 'Thịt, trứng, sữa tươi', 1, 1),
+(3, 'Gạo, ngũ cốc', 2, 1),
+(4, 'Mật ong, các sản phẩm từ mật ong, mật khác', 2, 1),
+(5, 'Đồ ăn nhanh', 3, 2),
+(6, 'Chế biến từ gạo, ngũ cốc', 3, 1),
+(7, 'Chế biến từ rau, củ, quả, hạt', 3, 1),
+(8, 'Chế biến từ thịt, trứng, sữa', 3, 1),
+(9, 'Chế biến từ thủy, hải sản', 3, 1),
+(10, 'Tương, nước mắm, gia vị lỏng khác', 4, 1),
+(11, 'Gia vị khác', 4, 1),
+(12, 'Chè tươi, chế biến', 5, 1),
+(13, 'Các sản phẩm khác từ chè, trà', 5, 1),
+(14, 'Cà phê, ca cao', 6, 1),
+(15, 'Rượu trắng', 7, 2),
+(16, 'Đồ uống có cồn khác', 7, 2),
+(17, 'Nước khoáng thiên nhiên, nước uống tinh khiết', 8, 3),
+(18, 'Đồ uống không cồn', 8, 2),
+(19, 'Thực phẩm chức năng, thuốc từ dược liệu, thuốc Y học cổ truyền', 9, 3),
+(20, 'Mỹ phẩm', 10, 3),
+(21, 'Trang thiết bị, dụng cụ y tế', 11, 3),
+(22, 'Thảo dược khác', 12, 3),
+(23, 'Thủ công mỹ nghệ, trang trí', 13, 4),
+(24, 'Thủ công mỹ nghệ gia dụng', 14, 4),
+(25, 'Vải, may mặc', 15, 2),
+(26, 'Dịch vụ du lịch - truyền thống - lễ hội', 16, 5);
 
 -- --------------------------------------------------------
 
@@ -484,35 +320,11 @@ CREATE TABLE `v_pcd` (
 -- --------------------------------------------------------
 
 --
--- Stand-in structure for view `v_phieu_cham_diem`
--- (See below for the actual view)
---
-CREATE TABLE `v_phieu_cham_diem` (
-`BoSanPham` varchar(255)
-,`Phan` text
-,`NhomTieuChi` text
-,`TieuChi` text
-,`LuaChon` text
-,`Diem` int
-);
-
--- --------------------------------------------------------
-
---
 -- Structure for view `v_pcd`
 --
 DROP TABLE IF EXISTS `v_pcd`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`nncpro`@`localhost` SQL SECURITY DEFINER VIEW `v_pcd`  AS  select `test_bo_tieu_chi`.`phan` AS `Phan`,`test_bo_tieu_chi`.`nhom_tc` AS `NhomTc`,`test_bo_tieu_chi`.`tieu_chi` AS `TieuChi`,`test_bo_tieu_chi`.`lua_chon` AS `LuaChon`,`test_bo_tieu_chi`.`diem` AS `Diem` from ((`test_bo_tieu_chi` join `test_nhom_sp_bo_tc` on((`test_bo_tieu_chi`.`id` = `test_nhom_sp_bo_tc`.`bo_tc`))) join `tb_phan_nhom_sp` on((`test_nhom_sp_bo_tc`.`nhomsp` = `tb_phan_nhom_sp`.`id_phan_nhom`))) ;
-
--- --------------------------------------------------------
-
---
--- Structure for view `v_phieu_cham_diem`
---
-DROP TABLE IF EXISTS `v_phieu_cham_diem`;
-
-CREATE ALGORITHM=UNDEFINED DEFINER=`nncpro`@`localhost` SQL SECURITY DEFINER VIEW `v_phieu_cham_diem`  AS  select `tb_phan_nhom_sp`.`ten_phan_nhom` AS `BoSanPham`,`tb_phan`.`content` AS `Phan`,`tb_nhom_tieu_chi`.`content` AS `NhomTieuChi`,`tb_tieu_chi`.`content` AS `TieuChi`,`tb_lua_chon`.`contents` AS `LuaChon`,`tb_bo_tieu_chi`.`diem` AS `Diem` from (((((`tb_phan_nhom_sp` join `tb_phan`) join `tb_nhom_tieu_chi`) join `tb_tieu_chi`) join `tb_lua_chon`) join `tb_bo_tieu_chi`) where ((`tb_phan_nhom_sp`.`id_phan_nhom` = `tb_bo_tieu_chi`.`nhom_sp`) and (`tb_bo_tieu_chi`.`phan` = `tb_phan`.`id`) and (`tb_bo_tieu_chi`.`nhom_tieu_chi` = `tb_nhom_tieu_chi`.`id`) and (`tb_bo_tieu_chi`.`tieu_chi` = `tb_tieu_chi`.`id`) and (`tb_bo_tieu_chi`.`lua_chon` = `tb_lua_chon`.`id`)) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`nncpro`@`localhost` SQL SECURITY DEFINER VIEW `v_pcd`  AS  select `tb_bo_tieu_chi`.`phan` AS `Phan`,`tb_bo_tieu_chi`.`nhom_tc` AS `NhomTc`,`tb_bo_tieu_chi`.`tieu_chi` AS `TieuChi`,`tb_bo_tieu_chi`.`lua_chon` AS `LuaChon`,`tb_bo_tieu_chi`.`diem` AS `Diem` from ((`tb_bo_tieu_chi` join `tb_nhom_sp_bo_tc` on((`tb_bo_tieu_chi`.`id` = `tb_nhom_sp_bo_tc`.`bo_tc`))) join `tb_phan_nhom_sp` on((`tb_nhom_sp_bo_tc`.`nhomsp` = `tb_phan_nhom_sp`.`id_phan_nhom`))) ;
 
 --
 -- Indexes for dumped tables
@@ -528,17 +340,7 @@ ALTER TABLE `tb_bo_ql`
 -- Indexes for table `tb_bo_tieu_chi`
 --
 ALTER TABLE `tb_bo_tieu_chi`
-  ADD UNIQUE KEY `id` (`nhom_sp`,`phan`,`nhom_tieu_chi`,`tieu_chi`,`lua_chon`),
-  ADD KEY `fk_bo_tc-phan` (`phan`),
-  ADD KEY `fk_bo_tc-nhom_tieu_chi` (`nhom_tieu_chi`),
-  ADD KEY `fk_bo_tc-tieu_chi` (`tieu_chi`),
-  ADD KEY `fk_bo_tc-lua_chon` (`lua_chon`);
-
---
--- Indexes for table `tb_lua_chon`
---
-ALTER TABLE `tb_lua_chon`
-  ADD PRIMARY KEY (`id`);
+  ADD UNIQUE KEY `id` (`id`,`id_phan`,`id_nhom_tc`,`id_tieu_chi`,`id_lua_chon`);
 
 --
 -- Indexes for table `tb_nganh_sp`
@@ -555,16 +357,11 @@ ALTER TABLE `tb_nhom_sp`
   ADD KEY `fk_nhom-nganh` (`nganh_sp`);
 
 --
--- Indexes for table `tb_nhom_tieu_chi`
+-- Indexes for table `tb_nhom_sp_bo_tc`
 --
-ALTER TABLE `tb_nhom_tieu_chi`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `tb_phan`
---
-ALTER TABLE `tb_phan`
-  ADD PRIMARY KEY (`id`);
+ALTER TABLE `tb_nhom_sp_bo_tc`
+  ADD PRIMARY KEY (`nhomsp`),
+  ADD KEY `fk_to_bo_tc` (`bo_tc`);
 
 --
 -- Indexes for table `tb_phan_nhom_sp`
@@ -575,31 +372,6 @@ ALTER TABLE `tb_phan_nhom_sp`
   ADD KEY `fk_phan_nhom-nhom` (`nhom`);
 
 --
--- Indexes for table `tb_tieu_chi`
---
-ALTER TABLE `tb_tieu_chi`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `test_bo_tieu_chi`
---
-ALTER TABLE `test_bo_tieu_chi`
-  ADD UNIQUE KEY `id` (`id`,`id_phan`,`id_nhom_tc`,`id_tieu_chi`,`id_lua_chon`);
-
---
--- Indexes for table `test_ds_tieu_chi`
---
-ALTER TABLE `test_ds_tieu_chi`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `test_nhom_sp_bo_tc`
---
-ALTER TABLE `test_nhom_sp_bo_tc`
-  ADD PRIMARY KEY (`nhomsp`),
-  ADD KEY `fk_to_bo_tc` (`bo_tc`);
-
---
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -608,12 +380,6 @@ ALTER TABLE `test_nhom_sp_bo_tc`
 --
 ALTER TABLE `tb_bo_ql`
   MODIFY `id_bo` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
--- AUTO_INCREMENT for table `tb_lua_chon`
---
-ALTER TABLE `tb_lua_chon`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `tb_nganh_sp`
@@ -628,48 +394,14 @@ ALTER TABLE `tb_nhom_sp`
   MODIFY `id_nhom_sp` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
--- AUTO_INCREMENT for table `tb_nhom_tieu_chi`
---
-ALTER TABLE `tb_nhom_tieu_chi`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
-
---
--- AUTO_INCREMENT for table `tb_phan`
---
-ALTER TABLE `tb_phan`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
 -- AUTO_INCREMENT for table `tb_phan_nhom_sp`
 --
 ALTER TABLE `tb_phan_nhom_sp`
   MODIFY `id_phan_nhom` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
--- AUTO_INCREMENT for table `tb_tieu_chi`
---
-ALTER TABLE `tb_tieu_chi`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
-
---
--- AUTO_INCREMENT for table `test_ds_tieu_chi`
---
-ALTER TABLE `test_ds_tieu_chi`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
-
---
 -- Constraints for dumped tables
 --
-
---
--- Constraints for table `tb_bo_tieu_chi`
---
-ALTER TABLE `tb_bo_tieu_chi`
-  ADD CONSTRAINT `fk_bo_tc-lua_chon` FOREIGN KEY (`lua_chon`) REFERENCES `tb_lua_chon` (`id`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_bo_tc-nhom_tieu_chi` FOREIGN KEY (`nhom_tieu_chi`) REFERENCES `tb_nhom_tieu_chi` (`id`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_bo_tc-phan` FOREIGN KEY (`phan`) REFERENCES `tb_phan` (`id`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_bo_tc-phan_nhom_sp` FOREIGN KEY (`nhom_sp`) REFERENCES `tb_phan_nhom_sp` (`id_phan_nhom`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_bo_tc-tieu_chi` FOREIGN KEY (`tieu_chi`) REFERENCES `tb_tieu_chi` (`id`) ON UPDATE CASCADE;
 
 --
 -- Constraints for table `tb_nhom_sp`
@@ -678,18 +410,18 @@ ALTER TABLE `tb_nhom_sp`
   ADD CONSTRAINT `fk_nhom-nganh` FOREIGN KEY (`nganh_sp`) REFERENCES `tb_nganh_sp` (`id_nganh`) ON UPDATE CASCADE;
 
 --
+-- Constraints for table `tb_nhom_sp_bo_tc`
+--
+ALTER TABLE `tb_nhom_sp_bo_tc`
+  ADD CONSTRAINT `fk_to_bo_tc` FOREIGN KEY (`bo_tc`) REFERENCES `tb_bo_tieu_chi` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_to_phan_nhom_sp` FOREIGN KEY (`nhomsp`) REFERENCES `tb_phan_nhom_sp` (`id_phan_nhom`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Constraints for table `tb_phan_nhom_sp`
 --
 ALTER TABLE `tb_phan_nhom_sp`
   ADD CONSTRAINT `fk_phan_nhom-bo_ql` FOREIGN KEY (`bo_ql`) REFERENCES `tb_bo_ql` (`id_bo`) ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_phan_nhom-nhom` FOREIGN KEY (`nhom`) REFERENCES `tb_nhom_sp` (`id_nhom_sp`) ON DELETE RESTRICT ON UPDATE CASCADE;
-
---
--- Constraints for table `test_nhom_sp_bo_tc`
---
-ALTER TABLE `test_nhom_sp_bo_tc`
-  ADD CONSTRAINT `fk_to_bo_tc` FOREIGN KEY (`bo_tc`) REFERENCES `test_bo_tieu_chi` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_to_phan_nhom_sp` FOREIGN KEY (`nhomsp`) REFERENCES `tb_phan_nhom_sp` (`id_phan_nhom`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
