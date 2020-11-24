@@ -79,6 +79,12 @@
             
         }
 
+        function getName($id){
+            $sql = "select ten_phan_nhom from tb_phan_nhom_sp where id_phan_nhom = '$id' limit 1";
+            $result = $this->select($sql);
+            return $result->fetch_row()[0];
+        }
+
         function Process($dataSet){
             $temp = [];
             $luaChon =[];

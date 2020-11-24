@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Phiếu đánh giá sản phẩm</title>
     <style>
+        body{
+            margin: 0 auto;
+            width: 70%;
+        }
         h2{
             text-align:center;
         }
@@ -21,9 +25,13 @@
             display: block;
             margin: 2rem auto;
         }
+        #name {
+            color: tomato;
+        }
     </style>
 </head>
 <body>
+    <h3>Bộ sản phẩm: <span id="name"><?php echo $params['name']?></span></h3>
     <form id="form" action="./TestLinhTinh/recieve.php" method="post">
         <?php 
             $phieu = $params['data'];

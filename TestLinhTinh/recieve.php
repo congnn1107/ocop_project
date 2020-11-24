@@ -1,5 +1,7 @@
 <?php
+    echo "<pre>";
     echo var_dump($_POST)."<hr>";
+    echo "</pre>";
     $kq = $_POST['tieuchi'];
 
     //tính điểm cho 3 phần
