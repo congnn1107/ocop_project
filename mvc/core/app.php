@@ -5,7 +5,7 @@
         var $controller;
         var $action;
         var $params=[];
-        private $defaultController = "Home";
+        private $defaultController = "Validate";
         private $defaultAction = "Welcome";
 
         function __construct(){
@@ -28,6 +28,7 @@
                  $this->action=$this->defaultAction;
                  require_once './mvc/controller/'.$this->controller.'Controller.php';
             }
+
             $obj = new $this->controller;
             call_user_func_array([$obj,$this->action],$this->params);
 

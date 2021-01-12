@@ -14,6 +14,9 @@
             $this->conn = null;
         }
 
+        function __destruct(){
+            $this->closeConnection();
+        }
         function getConnection(){
             if($this->conn == null){
                 $this->conn = new mysqli($this->host,$this->user,$this->pass, $this->dbName);
@@ -22,13 +25,13 @@
             return $this->conn;
         }
 
-        function select($sql){
+        function executeQuery($sql){
             $result = null;
             $this->getConnection();
             if($this->conn){
                 $result = $this->conn->query($sql);
             }
-            $this->closeConnection();
+            // $this->closeConnection();
             return $result;
         }
 

@@ -1,36 +1,43 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Phiếu đánh giá sản phẩm</title>
     <style>
-        body{
-            margin: 0 auto;
-            width: 70%;
+        .article {
+            margin-top: 1rem;
         }
-        h2{
+        .content h2{
             text-align:center;
         }
-        h4{
+        .content h4{
             margin-left: 1rem;
         }
-        h5{
+        .content h5{
             margin-left: 2rem;
         }
-        div{
+        .content div{
             margin-left: 3rem;
         }
-        form button{
+        .content #btnOK{
             display: block;
             margin: 2rem auto;
         }
-        #name {
+        .content #name {
             color: tomato;
         }
+        .content form input{
+            margin: 0.3rem 0;
+        }
+        .content form span{
+            color: #220000;
+        }
+        .content form h5{
+            color: #222222;
+        }
+        .content form h4{
+            color: #000022;
+        }
+        .content form h2{
+            color: red;
+        }
     </style>
-</head>
-<body>
+    <div class="article">
     <h3>Bộ sản phẩm: <span id="name"><?php echo $params['name']?></span></h3>
     <form id="form" action="./TestLinhTinh/recieve.php" method="post">
         <?php 
@@ -60,6 +67,7 @@
         ?>
         <button id="btnOK" type="submit">Hoàn Thành</button>
     </form>
+    </div>
     <script>
         var enter = false;
         document.getElementById("form").onkeydown= function(event){
@@ -79,6 +87,3 @@
             }
         }
     </script>
-
-</body>
-</html>

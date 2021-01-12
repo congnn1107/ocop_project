@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 4.9.5deb2
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Nov 24, 2020 at 07:05 AM
--- Server version: 5.7.30-log
--- PHP Version: 7.4.4
+-- Host: localhost:3306
+-- Generation Time: Jan 12, 2021 at 03:20 PM
+-- Server version: 8.0.22-0ubuntu0.20.04.3
+-- PHP Version: 7.4.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -18,8 +19,115 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `ocop_db`
+-- Database: `OCOP_DB`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `chuyen_gia`
+--
+
+CREATE TABLE `chuyen_gia` (
+  `username` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
+  `phan_nhom` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `chuyen_gia`
+--
+
+INSERT INTO `chuyen_gia` (`username`, `phan_nhom`) VALUES
+('chuyengiaa', 1),
+('chuyengiab', 2);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `nhom_danh_gia`
+--
+
+CREATE TABLE `nhom_danh_gia` (
+  `id_nhom` int NOT NULL,
+  `chuyen_gia` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
+  `sp` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
+  `status` int DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `nhom_danh_gia`
+--
+
+INSERT INTO `nhom_danh_gia` (`id_nhom`, `chuyen_gia`, `sp`, `status`) VALUES
+(1, 'chuyengiaa', '03-19-01', 0),
+(1, 'chuyengiaa', '03-19-02', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `ql_danh_gia`
+--
+
+CREATE TABLE `ql_danh_gia` (
+  `id` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
+  `cap_danh_gia` int NOT NULL,
+  `lan_danh_gia` int NOT NULL,
+  `begin` date NOT NULL,
+  `end` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `ql_danh_gia`
+--
+
+INSERT INTO `ql_danh_gia` (`id`, `cap_danh_gia`, `lan_danh_gia`, `begin`, `end`) VALUES
+('1', 1, 1, '2021-01-12', '2021-01-13'),
+('1', 1, 2, '2021-01-14', '2021-01-15'),
+('1', 2, 1, '2021-01-16', '2021-01-17'),
+('1', 2, 2, '2021-01-18', '2021-01-19');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `role`
+--
+
+CREATE TABLE `role` (
+  `id` int NOT NULL,
+  `role` varchar(50) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `role`
+--
+
+INSERT INTO `role` (`id`, `role`) VALUES
+(1, 'Admin'),
+(2, 'Chuyên Gia');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `san_pham`
+--
+
+CREATE TABLE `san_pham` (
+  `id` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
+  `ten_sp` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `chu_the_sx` varchar(160) COLLATE utf8_unicode_ci NOT NULL,
+  `dia_chi` varchar(160) COLLATE utf8_unicode_ci NOT NULL,
+  `hinh_sp` varchar(256) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `link_ho_so` varchar(500) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `phan_nhom` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `san_pham`
+--
+
+INSERT INTO `san_pham` (`id`, `ten_sp`, `chu_the_sx`, `dia_chi`, `hinh_sp`, `link_ho_so`, `phan_nhom`) VALUES
+('03-19-01', 'Rau dền', 'NNCpro', 'Tam Nông - Phú Thọ', 'null', 'null', 1),
+('03-19-02', 'Óc chó', 'khaiKK', 'Bắc Giang', 'null', 'null', 1);
 
 -- --------------------------------------------------------
 
@@ -28,8 +136,8 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `tb_bo_ql` (
-  `id_bo` int(11) NOT NULL,
-  `ten_bo` varchar(255) COLLATE utf8_unicode_ci NOT NULL
+  `id_bo` int NOT NULL,
+  `ten_bo` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -50,16 +158,16 @@ INSERT INTO `tb_bo_ql` (`id_bo`, `ten_bo`) VALUES
 --
 
 CREATE TABLE `tb_bo_tieu_chi` (
-  `id` int(11) NOT NULL,
-  `id_phan` int(11) NOT NULL,
-  `phan` text COLLATE utf8_unicode_ci NOT NULL,
-  `id_nhom_tc` int(11) NOT NULL,
-  `nhom_tc` text COLLATE utf8_unicode_ci NOT NULL,
-  `id_tieu_chi` int(11) NOT NULL,
-  `tieu_chi` text COLLATE utf8_unicode_ci NOT NULL,
-  `id_lua_chon` int(11) NOT NULL,
-  `lua_chon` text COLLATE utf8_unicode_ci NOT NULL,
-  `diem` int(11) NOT NULL,
+  `id` int NOT NULL,
+  `id_phan` int NOT NULL,
+  `phan` text CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `id_nhom_tc` int NOT NULL,
+  `nhom_tc` text CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `id_tieu_chi` int NOT NULL,
+  `tieu_chi` text CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `id_lua_chon` int NOT NULL,
+  `lua_chon` text CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `diem` int NOT NULL,
   `time` timestamp NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -2879,8 +2987,8 @@ INSERT INTO `tb_bo_tieu_chi` (`id`, `id_phan`, `phan`, `id_nhom_tc`, `nhom_tc`, 
 --
 
 CREATE TABLE `tb_nganh_sp` (
-  `id_nganh` int(11) NOT NULL,
-  `ten_nganh` varchar(100) COLLATE utf8_unicode_ci NOT NULL
+  `id_nganh` int NOT NULL,
+  `ten_nganh` varchar(100) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -2902,9 +3010,9 @@ INSERT INTO `tb_nganh_sp` (`id_nganh`, `ten_nganh`) VALUES
 --
 
 CREATE TABLE `tb_nhom_sp` (
-  `id_nhom_sp` int(11) NOT NULL,
-  `ten_nhom_sp` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `nganh_sp` int(11) NOT NULL
+  `id_nhom_sp` int NOT NULL,
+  `ten_nhom_sp` varchar(100) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `nganh_sp` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -2936,8 +3044,8 @@ INSERT INTO `tb_nhom_sp` (`id_nhom_sp`, `ten_nhom_sp`, `nganh_sp`) VALUES
 --
 
 CREATE TABLE `tb_nhom_sp_bo_tc` (
-  `nhomsp` int(11) NOT NULL,
-  `bo_tc` int(11) NOT NULL
+  `nhomsp` int NOT NULL,
+  `bo_tc` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -2954,43 +3062,153 @@ INSERT INTO `tb_nhom_sp_bo_tc` (`nhomsp`, `bo_tc`) VALUES
 --
 
 CREATE TABLE `tb_phan_nhom_sp` (
-  `id_phan_nhom` int(11) NOT NULL,
-  `ten_phan_nhom` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `nhom` int(11) NOT NULL,
-  `bo_ql` int(11) NOT NULL
+  `id_phan_nhom` int NOT NULL,
+  `ten_phan_nhom` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `nhom` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `tb_phan_nhom_sp`
 --
 
-INSERT INTO `tb_phan_nhom_sp` (`id_phan_nhom`, `ten_phan_nhom`, `nhom`, `bo_ql`) VALUES
-(1, 'Rau, củ, quả, hạt tươi', 1, 1),
-(2, 'Thịt, trứng, sữa tươi', 1, 1),
-(3, 'Gạo, ngũ cốc', 2, 1),
-(4, 'Mật ong, các sản phẩm từ mật ong, mật khác', 2, 1),
-(5, 'Đồ ăn nhanh', 3, 2),
-(6, 'Chế biến từ gạo, ngũ cốc', 3, 1),
-(7, 'Chế biến từ rau, củ, quả, hạt', 3, 1),
-(8, 'Chế biến từ thịt, trứng, sữa', 3, 1),
-(9, 'Chế biến từ thủy, hải sản', 3, 1),
-(10, 'Tương, nước mắm, gia vị lỏng khác', 4, 1),
-(11, 'Gia vị khác', 4, 1),
-(12, 'Chè tươi, chế biến', 5, 1),
-(13, 'Các sản phẩm khác từ chè, trà', 5, 1),
-(14, 'Cà phê, ca cao', 6, 1),
-(15, 'Rượu trắng', 7, 2),
-(16, 'Đồ uống có cồn khác', 7, 2),
-(17, 'Nước khoáng thiên nhiên, nước uống tinh khiết', 8, 3),
-(18, 'Đồ uống không cồn', 8, 2),
-(19, 'Thực phẩm chức năng, thuốc từ dược liệu, thuốc Y học cổ truyền', 9, 3),
-(20, 'Mỹ phẩm', 10, 3),
-(21, 'Trang thiết bị, dụng cụ y tế', 11, 3),
-(22, 'Thảo dược khác', 12, 3),
-(23, 'Thủ công mỹ nghệ, trang trí', 13, 4),
-(24, 'Thủ công mỹ nghệ gia dụng', 14, 4),
-(25, 'Vải, may mặc', 15, 2),
-(26, 'Dịch vụ du lịch - truyền thống - lễ hội', 16, 5);
+INSERT INTO `tb_phan_nhom_sp` (`id_phan_nhom`, `ten_phan_nhom`, `nhom`) VALUES
+(1, 'Rau, củ, quả, hạt tươi', 1),
+(2, 'Thịt, trứng, sữa tươi', 1),
+(3, 'Gạo, ngũ cốc', 2),
+(4, 'Mật ong, các sản phẩm từ mật ong, mật khác', 2),
+(5, 'Đồ ăn nhanh', 3),
+(6, 'Chế biến từ gạo, ngũ cốc', 3),
+(7, 'Chế biến từ rau, củ, quả, hạt', 3),
+(8, 'Chế biến từ thịt, trứng, sữa', 3),
+(9, 'Chế biến từ thủy, hải sản', 3),
+(10, 'Tương, nước mắm, gia vị lỏng khác', 4),
+(11, 'Gia vị khác', 4),
+(12, 'Chè tươi, chế biến', 5),
+(13, 'Các sản phẩm khác từ chè, trà', 5),
+(14, 'Cà phê, ca cao', 6),
+(15, 'Rượu trắng', 7),
+(16, 'Đồ uống có cồn khác', 7),
+(17, 'Nước khoáng thiên nhiên, nước uống tinh khiết', 8),
+(18, 'Đồ uống không cồn', 8),
+(19, 'Thực phẩm chức năng, thuốc từ dược liệu, thuốc Y học cổ truyền', 9),
+(20, 'Mỹ phẩm', 10),
+(21, 'Trang thiết bị, dụng cụ y tế', 11),
+(22, 'Thảo dược khác', 12),
+(23, 'Thủ công mỹ nghệ, trang trí', 13),
+(24, 'Thủ công mỹ nghệ gia dụng', 14),
+(25, 'Vải, may mặc', 15),
+(26, 'Dịch vụ du lịch - truyền thống - lễ hội', 16);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_phieu_kq_cham`
+--
+
+CREATE TABLE `tb_phieu_kq_cham` (
+  `cap_cham` int NOT NULL,
+  `lan_cham` int NOT NULL,
+  `nguoi_cham` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
+  `id_sp` int NOT NULL,
+  `id_phan_nhom` int NOT NULL,
+  `id_phan` int NOT NULL,
+  `id_nhom_tc` int NOT NULL,
+  `id_tc` int NOT NULL,
+  `id_lua_chon` int NOT NULL,
+  `diem` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_pnhom_bo`
+--
+
+CREATE TABLE `tb_pnhom_bo` (
+  `id` int NOT NULL,
+  `phan_nhom_sp` int DEFAULT NULL,
+  `bo_ql` int DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `tb_pnhom_bo`
+--
+
+INSERT INTO `tb_pnhom_bo` (`id`, `phan_nhom_sp`, `bo_ql`) VALUES
+(1, 1, 1),
+(2, 2, 1),
+(3, 3, 1),
+(4, 4, 1),
+(5, 5, 2),
+(6, 6, 1),
+(7, 7, 1),
+(8, 8, 1),
+(9, 9, 1),
+(10, 10, 1),
+(11, 11, 1),
+(12, 12, 1),
+(13, 13, 1),
+(14, 14, 1),
+(15, 15, 2),
+(16, 16, 2),
+(17, 17, 3),
+(18, 18, 2),
+(19, 19, 3),
+(20, 20, 3),
+(21, 21, 3),
+(22, 22, 3),
+(23, 23, 4),
+(24, 24, 4),
+(25, 25, 2),
+(26, 26, 5),
+(27, 8, 2);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user`
+--
+
+CREATE TABLE `user` (
+  `username` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
+  `password` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
+  `ho_ten` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `gioi_tinh` tinyint(1) NOT NULL,
+  `ngay_sinh` date NOT NULL,
+  `dia_chi` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `sdt` varchar(12) COLLATE utf8_unicode_ci NOT NULL,
+  `email` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `avatar` varchar(256) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `ngay_them` datetime DEFAULT CURRENT_TIMESTAMP,
+  `login_status` tinyint(1) DEFAULT '0',
+  `last_login` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `user_status` tinyint(1) DEFAULT '1',
+  `role` int DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`username`, `password`, `ho_ten`, `gioi_tinh`, `ngay_sinh`, `dia_chi`, `sdt`, `email`, `avatar`, `ngay_them`, `login_status`, `last_login`, `user_status`, `role`) VALUES
+('admin', '12345', 'Nguyễn Ngọc Công', 1, '1998-07-11', 'Tam Nông - Phú Thọ', '0352765398', 'nnc@email.com', 'https://scontent.fhan5-6.fna.fbcdn.net/v/t1.0-9/40269364_2106065822990225_1622648458429071360_n.jpg?_nc_cat=105&ccb=2&_nc_sid=174925&_nc_ohc=cTH9tgoeK48AX8M28Kc&_nc_ht=scontent.fhan5-6.fna&oh=db1d24d6cbce1d073fc6981192dac7d4&oe=601B8AC1', '2021-01-07 15:08:16', 1, '2021-01-12 04:03:29', 1, 1),
+('chuyengiaa', '123', 'Nguyễn Văn Tí', 1, '1998-07-11', 'Hà Nội', '123456', 'ti@mail', NULL, '2021-01-12 14:41:39', 0, '2021-01-12 07:41:39', 1, 2),
+('chuyengiab', '123', 'Nguyễn Thị Tèo', 0, '1998-07-11', 'Hà Giang', '1123242', 'teo@email.com', './asset/image/upload/diepavt.jpg', '2021-01-12 14:42:24', 0, '2021-01-12 07:42:24', 1, 2);
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `v_list_user`
+-- (See below for the actual view)
+--
+CREATE TABLE `v_list_user` (
+`username` varchar(32)
+,`avatar` varchar(256)
+,`ho_ten` varchar(50)
+,`gioi_tinh` tinyint(1)
+,`ngay_them` datetime
+,`role` varchar(50)
+);
 
 -- --------------------------------------------------------
 
@@ -3003,8 +3221,33 @@ CREATE TABLE `v_pcd` (
 ,`NhomTc` text
 ,`TieuChi` text
 ,`LuaChon` text
-,`Diem` int(11)
+,`Diem` int
 );
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `v_tt_sp`
+-- (See below for the actual view)
+--
+CREATE TABLE `v_tt_sp` (
+`id` varchar(32)
+,`hinh_sp` varchar(256)
+,`ten_sp` varchar(100)
+,`chu_the_sx` varchar(160)
+,`dia_chi` varchar(160)
+,`link_ho_so` varchar(500)
+,`phan_nhom` varchar(255)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `v_list_user`
+--
+DROP TABLE IF EXISTS `v_list_user`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`nncpro`@`localhost` SQL SECURITY DEFINER VIEW `v_list_user`  AS  select `user`.`username` AS `username`,`user`.`avatar` AS `avatar`,`user`.`ho_ten` AS `ho_ten`,`user`.`gioi_tinh` AS `gioi_tinh`,`user`.`ngay_them` AS `ngay_them`,`role`.`role` AS `role` from (`user` join `role` on((`user`.`role` = `role`.`id`))) ;
 
 -- --------------------------------------------------------
 
@@ -3015,9 +3258,48 @@ DROP TABLE IF EXISTS `v_pcd`;
 
 CREATE ALGORITHM=UNDEFINED DEFINER=`nncpro`@`localhost` SQL SECURITY DEFINER VIEW `v_pcd`  AS  select `tb_bo_tieu_chi`.`phan` AS `Phan`,`tb_bo_tieu_chi`.`nhom_tc` AS `NhomTc`,`tb_bo_tieu_chi`.`tieu_chi` AS `TieuChi`,`tb_bo_tieu_chi`.`lua_chon` AS `LuaChon`,`tb_bo_tieu_chi`.`diem` AS `Diem` from ((`tb_bo_tieu_chi` join `tb_nhom_sp_bo_tc` on((`tb_bo_tieu_chi`.`id` = `tb_nhom_sp_bo_tc`.`bo_tc`))) join `tb_phan_nhom_sp` on((`tb_nhom_sp_bo_tc`.`nhomsp` = `tb_phan_nhom_sp`.`id_phan_nhom`))) ;
 
+-- --------------------------------------------------------
+
+--
+-- Structure for view `v_tt_sp`
+--
+DROP TABLE IF EXISTS `v_tt_sp`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`nncpro`@`localhost` SQL SECURITY DEFINER VIEW `v_tt_sp`  AS  select `san_pham`.`id` AS `id`,`san_pham`.`hinh_sp` AS `hinh_sp`,`san_pham`.`ten_sp` AS `ten_sp`,`san_pham`.`chu_the_sx` AS `chu_the_sx`,`san_pham`.`dia_chi` AS `dia_chi`,`san_pham`.`link_ho_so` AS `link_ho_so`,`tb_phan_nhom_sp`.`ten_phan_nhom` AS `phan_nhom` from (`san_pham` join `tb_phan_nhom_sp` on((`san_pham`.`phan_nhom` = `tb_phan_nhom_sp`.`id_phan_nhom`))) where (0 <> 1) ;
+
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `chuyen_gia`
+--
+ALTER TABLE `chuyen_gia`
+  ADD PRIMARY KEY (`username`);
+
+--
+-- Indexes for table `nhom_danh_gia`
+--
+ALTER TABLE `nhom_danh_gia`
+  ADD PRIMARY KEY (`id_nhom`,`chuyen_gia`,`sp`);
+
+--
+-- Indexes for table `ql_danh_gia`
+--
+ALTER TABLE `ql_danh_gia`
+  ADD PRIMARY KEY (`id`,`cap_danh_gia`,`lan_danh_gia`);
+
+--
+-- Indexes for table `role`
+--
+ALTER TABLE `role`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `san_pham`
+--
+ALTER TABLE `san_pham`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `tb_bo_ql`
@@ -3057,36 +3339,62 @@ ALTER TABLE `tb_nhom_sp_bo_tc`
 --
 ALTER TABLE `tb_phan_nhom_sp`
   ADD PRIMARY KEY (`id_phan_nhom`),
-  ADD KEY `fk_phan_nhom-bo_ql` (`bo_ql`),
   ADD KEY `fk_phan_nhom-nhom` (`nhom`);
+
+--
+-- Indexes for table `tb_pnhom_bo`
+--
+ALTER TABLE `tb_pnhom_bo`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_bo_ql` (`bo_ql`),
+  ADD KEY `fk_pnhom_sp` (`phan_nhom_sp`);
+
+--
+-- Indexes for table `user`
+--
+ALTER TABLE `user`
+  ADD PRIMARY KEY (`username`),
+  ADD KEY `fk_user_role` (`role`);
 
 --
 -- AUTO_INCREMENT for dumped tables
 --
 
 --
+-- AUTO_INCREMENT for table `role`
+--
+ALTER TABLE `role`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `tb_bo_ql`
 --
 ALTER TABLE `tb_bo_ql`
-  MODIFY `id_bo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_bo` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `tb_nganh_sp`
 --
 ALTER TABLE `tb_nganh_sp`
-  MODIFY `id_nganh` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_nganh` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `tb_nhom_sp`
 --
 ALTER TABLE `tb_nhom_sp`
-  MODIFY `id_nhom_sp` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id_nhom_sp` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `tb_phan_nhom_sp`
 --
 ALTER TABLE `tb_phan_nhom_sp`
-  MODIFY `id_phan_nhom` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id_phan_nhom` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+
+--
+-- AUTO_INCREMENT for table `tb_pnhom_bo`
+--
+ALTER TABLE `tb_pnhom_bo`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- Constraints for dumped tables
@@ -3109,8 +3417,20 @@ ALTER TABLE `tb_nhom_sp_bo_tc`
 -- Constraints for table `tb_phan_nhom_sp`
 --
 ALTER TABLE `tb_phan_nhom_sp`
-  ADD CONSTRAINT `fk_phan_nhom-bo_ql` FOREIGN KEY (`bo_ql`) REFERENCES `tb_bo_ql` (`id_bo`) ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_phan_nhom-nhom` FOREIGN KEY (`nhom`) REFERENCES `tb_nhom_sp` (`id_nhom_sp`) ON UPDATE CASCADE;
+
+--
+-- Constraints for table `tb_pnhom_bo`
+--
+ALTER TABLE `tb_pnhom_bo`
+  ADD CONSTRAINT `fk_bo_ql` FOREIGN KEY (`bo_ql`) REFERENCES `tb_bo_ql` (`id_bo`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_pnhom_sp` FOREIGN KEY (`phan_nhom_sp`) REFERENCES `tb_phan_nhom_sp` (`id_phan_nhom`) ON UPDATE CASCADE;
+
+--
+-- Constraints for table `user`
+--
+ALTER TABLE `user`
+  ADD CONSTRAINT `fk_user_role` FOREIGN KEY (`role`) REFERENCES `role` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

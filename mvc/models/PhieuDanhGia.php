@@ -11,10 +11,10 @@
         function get($id){
             $sql = "select distinct id_phan, phan from tb_bo_tieu_chi where id='$id'";
             
-            $parts = $this->select($sql);
+            $parts = $this->executeQuery($sql);
             // Xử lí đưa ra object phiếu chấm điểm
             
-            echo "<br>";
+            // echo "<br>";
             $result=[];
             //duyệt từng phần
             foreach($parts as $part){
@@ -25,7 +25,7 @@
 
                 //lấy ra và duyệt từng nhóm tiêu chí theo phần
                 $sql = "select distinct id_nhom_tc,nhom_tc from tb_bo_tieu_chi where id = '$id' and id_phan = '".$partRow['id']."' ";
-                $groups = $this->select($sql);
+                $groups = $this->executeQuery($sql);
                
                 $groupSet=[];
                 foreach($groups as $group){
@@ -36,7 +36,7 @@
 
                     //lấy ra và duyệt từng tiêu chí theo nhóm tiêu chí
                     $sql = "select distinct id_tieu_chi,tieu_chi from tb_bo_tieu_chi where id = '$id' and id_phan = '".$partRow['id']."' and id_nhom_tc = '".$groupRow['id']."'";
-                    $cacTieuChi = $this->select($sql);
+                    $cacTieuChi = $this->executeQuery($sql);
                     $tieuChiSet=[];
                     foreach($cacTieuChi as $tieuChi){
                         $tieuChiRow=[
@@ -49,7 +49,7 @@
                             and id_phan = '".$partRow['id']."' and id_nhom_tc = '".$groupRow['id']."'
                             and id_tieu_chi = '".$tieuChiRow['id']."'
                             ";
-                        $choices = $this->select($sql);
+                        $choices = $this->executeQuery($sql);
                         $choiceSet=[];
                         foreach($choices as $choice){
                             $choiceRow = [
@@ -79,12 +79,18 @@
             
         }
 
+        function layDS(){
+            $sql = "SELECT id_phan_nhom,ten_phan_nhom FROM `tb_phan_nhom_sp` WHERE 1";
+            $result = $this->executeQuery($sql);
+            return $result;
+        }
         function getName($id){
             $sql = "select ten_phan_nhom from tb_phan_nhom_sp where id_phan_nhom = '$id' limit 1";
-            $result = $this->select($sql);
+            $result = $this->executeQuery($sql);
             return $result->fetch_row()[0];
         }
 
+        //Xu ly thanh json
         function Process($dataSet){
             $temp = [];
             $luaChon =[];

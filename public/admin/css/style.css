@@ -1,0 +1,171 @@
+/*
+Body, html, *
+*/
+*{
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
+    font-family: sans-serif;
+    box-sizing: border-box;
+}
+body, html{
+    width: 100%;
+    min-height: 100%;
+}
+
+/*Menu left*/
+aside, .wrapper{
+    transition: all 0.25s;
+}
+
+aside{
+    position: fixed;
+    height: 100%;
+    left: 0; 
+    width:20%;
+    background-color: black;
+    color: gray;
+}
+aside.hide{
+    left: -20%;
+}
+aside .info{
+    min-height: 10%;
+    border-bottom: 1px solid lightgray;
+    width: 100%;
+    text-align: center;
+}
+aside .info .avt img{
+    width: 60px;
+    height: 60px;
+    border-radius: 50px;
+    margin: 0.2rem auto;
+    padding: 0.2rem;
+    border: 1px solid white;
+}
+aside .info a{
+    text-decoration: none;
+    color: orange;
+}
+aside .nav .title{
+    text-align: center;
+    margin: 0.5rem 0 0.5rem 0;
+    
+}
+aside .nav .nav-items a{
+    text-decoration: none;
+    color: steelblue;
+    padding-left: 0.5rem;
+}
+/*
+    Main layout
+*/
+
+
+.wrapper{
+    height: 100%;
+    width: 80%;
+    margin-left: 20%;
+}
+.wrapper.full{
+    margin-left: 0;
+    width: 100%;
+}
+
+.wrapper header{
+    position: sticky;
+    top: 0;
+    height: 2rem;
+    background-color: black;
+    color: white;
+}
+.wrapper header .left{
+    display: flex;
+    flex-direction: row;
+    float: left;
+}
+.wrapper header .right{
+    position: absolute;
+    color: white;
+    right: 0;
+}
+.wrapper .content{
+    width: 100%;
+    min-height: calc(100vh - 32px - 24.5px); /*make footer always on the bottom of page*/
+}
+.wrapper footer{
+    width: 100%;
+    background-color: gray;
+    text-align: center;
+    color: lightgray;
+}
+.button-menu{
+    border: 1px solid white;
+    width: fit-content;
+    padding: 2px;
+    cursor: pointer;
+    margin: 1px;
+}
+.button-menu:active{
+    border: 1px solid orangered;
+}
+.button-menu .hyphen{
+    width: 20px;
+    height: 3px;
+    background-color: rgba(247, 247, 247, 0.884);
+    margin: 3px 0;
+}
+.button-menu:hover .hyphen{
+    background-color: orange;
+}
+.filter{
+    width: fit-content;
+    height: 100%;
+    margin:0.25rem;
+    margin-left: 0.5rem;
+}
+.fiter form{
+    height: 100%;
+    width: 100%;
+}
+.filter form *{
+    display: block;
+    height: 100%;
+    float:left;
+}
+.filter form input{
+    border-right: none;
+    border-top: 1px solid gray;
+    border-left: 1px solid gray;
+    border-bottom: 1px solid gray;
+    border-radius: 10px 0 0 10px;
+    outline: none;
+    padding:1px;
+    color: orange;
+    text-indent: 0.5rem;
+}
+.filter form button{
+    border-left: none;
+    border-top: 1px solid gray;
+    border-right: 1px solid gray;
+    border-bottom: 1px solid gray;
+    outline: none;
+    padding: 3px 5px;
+    background-color: white;
+    border-radius: 0 10px 10px 0;
+    color: gray;
+    cursor: pointer;
+}
+nav{
+    
+}
+nav a{
+    text-decoration: none;
+    color: white;
+    display: block;
+    padding: 0.3rem;
+    font-size: 0.8rem;
+}
+nav a:hover{
+    color: orange;
+}
