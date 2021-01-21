@@ -69,8 +69,8 @@
         <td><?php echo $row['chu_the_sx']?></td>
         <td><?php echo $row['dia_chi']?></td>
         <td><?php echo $row['phan_nhom']?></td>
-        <td><a href="?url=Admin/ChiTietUser/<?php echo $row['username'] ?>">Xem chi tiết</a></td>
-        <td><a href="?url=Admin/XoaUser/<?php echo $row['username'] ?>" onclick="return confirm('Bạn có chắc muốn xóa user <?php echo $row['ho_ten']?>')">Xóa</a></td>
+        <td><a href="?url=Admin/UpdateSanPham/<?php echo $row['id'] ?>">Cập nhật</a></td>
+        <td><a href="?url=Admin/DeleteSanPham/<?php echo $row['id'] ?>" onclick="return confirm('Bạn có chắc muốn xóa sản phẩm <?php echo $row['ten_sp']?>')">Xóa</a></td>
     </tr>
 
 <?php

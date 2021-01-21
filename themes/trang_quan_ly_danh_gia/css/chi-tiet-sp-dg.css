@@ -1,0 +1,39 @@
+.main-div {
+    width: 90%;
+    margin: 1rem auto;
+}
+.main-div .title {
+    text-align: center;
+    color:tomato;
+    text-transform: uppercase;
+}
+.main-div table{
+    border-collapse: collapse;
+}
+.main-div table tr > *{
+    padding: 0.3rem 0.2rem;
+}
+.star{
+    margin: 0 0.2rem;
+    color: rgb(255, 196, 4);
+    font-size: 1.5rem;
+}
+.main-div .line{
+    margin: 0.15rem 0;
+}
+.main-div .line .value{
+    margin: 0 0.2rem;
+    color: orangered;
+    font-weight: bold;
+}
+.main-div .back-button{
+    text-decoration: none;
+    color: gray;
+    display: block;
+    width: fit-content;
+    padding: 0.15rem;
+    box-shadow: 1px 1px 2px gray;
+}
+.main-div .back-button:hover{
+    color: green;
+}

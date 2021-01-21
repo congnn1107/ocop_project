@@ -118,44 +118,7 @@ aside .nav .nav-items a{
 .button-menu:hover .hyphen{
     background-color: orange;
 }
-.filter{
-    width: fit-content;
-    height: 100%;
-    margin:0.25rem;
-    margin-left: 0.5rem;
-}
-.fiter form{
-    height: 100%;
-    width: 100%;
-}
-.filter form *{
-    display: block;
-    height: 100%;
-    float:left;
-}
-.filter form input{
-    border-right: none;
-    border-top: 1px solid gray;
-    border-left: 1px solid gray;
-    border-bottom: 1px solid gray;
-    border-radius: 10px 0 0 10px;
-    outline: none;
-    padding:1px;
-    color: orange;
-    text-indent: 0.5rem;
-}
-.filter form button{
-    border-left: none;
-    border-top: 1px solid gray;
-    border-right: 1px solid gray;
-    border-bottom: 1px solid gray;
-    outline: none;
-    padding: 3px 5px;
-    background-color: white;
-    border-radius: 0 10px 10px 0;
-    color: gray;
-    cursor: pointer;
-}
+
 nav{
     
 }
@@ -168,4 +131,11 @@ nav a{
 }
 nav a:hover{
     color: orange;
+}
+.content table{
+    margin: 1rem auto;
+}
+.content table th{
+    background-color: green;
+    color: white;
 }

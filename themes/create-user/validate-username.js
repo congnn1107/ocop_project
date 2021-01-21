@@ -9,7 +9,7 @@ function ktraTonTai(e){
     // console.log(e);
     var req = new XMLHttpRequest();
     req.onreadystatechange= function(){
-        if(req.DONE) {
+        if(req.DONE && req.readyState==4) {
             
             // console.log(req.responseText);//info.innerHTML = req.responseText;
             result= req.responseText=="true"?true:false;

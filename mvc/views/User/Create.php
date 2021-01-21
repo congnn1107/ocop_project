@@ -1,3 +1,58 @@
+<style>
+    .content > a{
+        text-decoration: none;
+        color: orangered;
+        margin: 2rem;
+        display: block;
+        box-shadow: 1px 1px 2px gray;
+        width: fit-content;
+        padding: 0.4rem 0.3rem;
+    }
+    .main-form{
+        width: 90%;
+        margin: auto;
+        padding: 0.5rem;
+        box-shadow: 1px 1px 2px gray , 1px -1px 2px gray;
+    }
+    .main-form form{
+        width: 100%;
+        height: 100%;
+    }
+    .main-form form > div{
+        width: 100%;
+        margin: 0.5rem 0;
+        display: flex;
+        align-items: center;
+    }
+    .main-form form > div > *{
+        width: 100%;
+    }
+    .main-form form > div > label{
+        width: 100%;
+        flex-shrink: 2;
+    }
+    .main-form form > .form-btn {
+        display: block;
+        text-align: center;
+    }
+    .main-form form > .form-btn button{
+        width: 100px;
+        background-color: green;
+        color: white;
+        border-radius: 3px;
+        border: none;
+        outline: none;
+        padding: 0.3rem;
+        box-shadow: 1px 1px 2px gray , 1px -1px 2px gray;
+        cursor: pointer;
+    }
+    .main-form form > .form-btn button:hover{
+        background-color: orangered;
+    }
+    .form-control #info{
+       text-align: center;
+    }
+</style>
 <a href="?url=Admin/QuanLyUser">Back</a>
 <div class="main-form">
     <form action="?url=Admin/CreateUser" method="post" enctype="multipart/form-data">
@@ -41,6 +96,8 @@
         <div class="form-control">
             <label for="">Username: </label>
             <input type="text" id="username" name="username" minlength="5" maxlength="32" required>
+        </div>
+        <div class="form-control">
             <span id="info"></span>
         </div>
         <div class="form-control">
@@ -61,6 +118,6 @@
     </form>
 </div>
 <div class="message">
-    <p style="color:red"><?php echo $params["message"]?></p>
+    <p style="color:red;"><?php echo $params["message"]?></p>
 </div>
-<script src="./public/create-user/validate-username.js"></script>
+<script src="./themes/create-user/validate-username.js"></script>

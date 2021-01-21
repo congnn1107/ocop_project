@@ -14,6 +14,6 @@
         </div>
        <?php include "./mvc/views/Admin/footer.php"?>
     </div>
-    <script src="./public/admin/js/script.js"></script>
+    <script src="./themes/admin/js/script.js"></script>
 </body>
 </html>

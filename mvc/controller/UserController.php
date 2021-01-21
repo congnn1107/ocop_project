@@ -75,6 +75,7 @@
         }
         function update($username){
             $userEntity=null;
+            $message="";
             if(isset($_POST['save'])){
                 $model = $this->model("UserModel");
                 $avatar = $this->detail($username)->avatar;
@@ -99,6 +100,9 @@
                     $_POST['user_status']
                 );
                 $result = $model->update($userEntity);
+
+                
+                //TODO: kiểm tra kết quả update rồi trả về thông báo update thành công hay thất bại
             }
             $userEntity=$this->detail($username);
 

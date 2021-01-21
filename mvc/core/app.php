@@ -5,7 +5,7 @@
         var $controller;
         var $action;
         var $params=[];
-        private $defaultController = "Validate";
+        private $defaultController = "Home";
         private $defaultAction = "Welcome";
 
         function __construct(){

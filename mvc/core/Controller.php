@@ -5,13 +5,18 @@ class Controller{
         // if(!isset($_SESSION['username'])) header('Location: index.php');
     }
     function model($name,$params =[]){
+        $model = null;
         $filePath = "./mvc/models/".$name.".php";
-        if(file_exists($filePath)){
-            require_once $filePath;
-            $model = new $name;
-            return $model;
+        if(!class_exists($name)){
+            if(file_exists($filePath)){
+                require_once $filePath;
+            }else{
+                return $model;
+            } 
         }
-        return null;
+        $model = new $name;
+
+        return $model;
     }
 
     function view($view, $params = []){
@@ -27,7 +32,7 @@ class Controller{
      */
     function auth(){
         if(!isset($_SESSION['user'])){
-            header("Location: index.php");
+            header("Location: index.php?url=Validate");
          }
     }
     function checkAdmin(){

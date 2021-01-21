@@ -14,6 +14,14 @@ function uploadImage($img){
     }
     return false;
 }
+function uploadHinhSP($img){
+    $target_path = "./asset/image/upload/product/";
+    $target_file = $target_path.$img['name'];
+    if(move_uploaded_file($img['tmp_name'],$target_file)){
+        return $target_file;
+    }
+    return false;
+}
 function deleteFile($file_name){
     if(file_exists($file_name)){
         return unlink($file_name);

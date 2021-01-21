@@ -1,13 +1,55 @@
 <style>
 .content .avatar{
-    width: 300px;
-    height: 300px;
+    width: 200px;
+    height: 200px;
+    margin: auto
 }
 .content .avatar img{
     display: block;
     width: inherit;
     height: inherit;
 }
+.main-div{
+    width: 60%;
+    margin: auto;
+    box-shadow: 1px 1px 2px gray , 1px -1px 2px gray;
+    padding: 1rem;
+
+}
+.content > a, .main-div > a{
+        text-decoration: none;
+        color: orangered;
+        margin: 0.5rem 2rem;
+        display: block;
+        box-shadow: 1px 1px 2px gray;
+        width: fit-content;
+        padding: 0.4rem 0.3rem;
+}
+.main-div > a{
+    margin: auto;
+    background-color: green;
+    color: white;
+    border-radius: 3px;
+}
+.main-div > a:hover{
+    background-color: orange;
+}
+.line{
+    display: flex;
+    align-items: center;
+    margin: 0.5rem 0;
+}
+.line > span{
+    width: 100%;
+}
+.line .title{
+    flex-shrink: 2;
+    color: gray;
+}
+.line .value{
+    color: orangered;
+}
+
 </style>
 <!-- Nút back -->
 <a href="?url=Admin/QuanLyUser">Back</a>
@@ -18,6 +60,7 @@
 ?>
 <?php
 if($user!=null){?>
+<div class="main-div">
 <div class="avatar">
     <img src="<?php echo $user->avatar==""?"./asset/image/upload/default-avatar.jpeg":$user->avatar?>" alt="">
 </div>
@@ -36,6 +79,7 @@ if($user!=null){?>
 
 </div>
 <a href="?url=Admin/updateUser/<?php echo $user->username ?>">Cập nhật</a>
+</div>
 <?php
 }else{?>
     <p>Không tìm thấy User này</p>

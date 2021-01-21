@@ -15,4 +15,16 @@
             $result = $this->executeQuery($sql);
             return $result;
         }
+        function locTheoPhanNhom($id_phan_nhom){
+            $sql = "select id,ten_sp from san_pham where phan_nhom=$id_phan_nhom";
+            $result = $this->executeQuery($sql);
+            $arr = [];
+            while($row=$result->fetch_assoc()){
+                $arr[] = [
+                    "id"=>$row["id"],
+                    "ten_sp" =>$row["ten_sp"]
+                ];
+            }
+            return $arr;
+        }
     }

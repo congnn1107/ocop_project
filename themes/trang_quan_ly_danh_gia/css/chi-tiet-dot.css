@@ -1,0 +1,18 @@
+.main-div .list table img{
+    width: 50px;
+    height: 50px;
+    margin: auto;
+    display: block;
+}
+.main-div .list table a{
+    text-decoration: none;
+    display: block;
+    color: tomato;
+    padding: 0.15rem;
+}
+.main-div .list table a:hover{
+    box-shadow: 1px 1px 2px gray;
+}
+.main-div .list table{
+    text-align: center;
+}

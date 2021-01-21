@@ -27,7 +27,7 @@
         </div>
         <div class="form-control">
             <label for="">Link hồ sơ: </label>
-            <input type="text" name="link_ho_so" required>
+            <input type="text" name="link_ho_so">
         </div>
         <div class="form-control">
             <label for="">Phân nhóm sp: </label>

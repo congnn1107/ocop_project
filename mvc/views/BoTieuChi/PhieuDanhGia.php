@@ -39,7 +39,7 @@
     </style>
     <div class="article">
     <h3>Bộ sản phẩm: <span id="name"><?php echo $params['name']?></span></h3>
-    <form id="form" action="./TestLinhTinh/recieve.php" method="post">
+    <form id="form" action="" method="post">
         <?php 
             $phieu = $params['data'];
 
@@ -65,8 +65,9 @@
                 }
             }
         ?>
-        <button id="btnOK" type="submit">Hoàn Thành</button>
+        <!-- <button id="btnOK" type="submit">Hoàn Thành</button> -->
     </form>
+    <a href="?url=Admin/QuanLyTieuChi">Trở về</a>
     </div>
     <script>
         var enter = false;
@@ -80,10 +81,10 @@
                 enter = false;
             }
         }
-        document.getElementById("btnOK").onclick=function(event){
-            if(enter){
-                event.preventDefault();
-                return false;
-            }
-        }
+        // document.getElementById("btnOK").onclick=function(event){
+        //     if(enter){
+        //         event.preventDefault();
+        //         return false;
+        //     }
+        // }
     </script>

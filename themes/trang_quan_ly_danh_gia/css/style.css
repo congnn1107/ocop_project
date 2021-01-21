@@ -1,0 +1,4 @@
+.table-row.hidden,.hidden{
+    display: none;
+    background-color: red;
+}

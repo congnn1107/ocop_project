@@ -67,9 +67,36 @@
             $sp =new SanPham();
             $sp->Create();
         }
-        function QuanLyChamDiem(){
+        function DeleteSanPham($id){
+            include "./mvc/controller/SanPhamController.php";
+            $sp =new SanPham();
+            $sp->Delete($id);
+        }
+        function UpdateSanPham($id){
+            include "./mvc/controller/SanPhamController.php";
+            $sp =new SanPham();
+            $sp->Update($id);
+        }
+        // Phần này thử code kiểu khác
+        function QuanLyDanhGia($hoat_dong="",$tham_so=[]){
             include "./mvc/controller/QuanLyDanhGiaController.php";
-            $sp =new QuanLyDanhGia();
-            $sp->Welcome();
+            $dg =new QuanLyDanhGia();
+            // echo $hoat_dong;
+            if(method_exists($dg,$hoat_dong)){
+                $dg->$hoat_dong($tham_so);
+            }else{
+                $dg->Welcome();
+            }
+        }
+        function ChiTietSanPhamDanhGia($id_dg,$id_sp){
+            include "./mvc/controller/QuanLyDanhGiaController.php";
+            $dg =new QuanLyDanhGia();
+            $dg->detailSanPhamDG($id_dg,$id_sp);
+        }
+        function QuanLyChuyenGia(){
+            include "./mvc/controller/QuanLyChuyenGiaController.php";
+            $cg =new QuanLyChuyenGia();
+            $cg->Welcome();
+
         }
     }
