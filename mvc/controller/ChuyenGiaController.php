@@ -7,10 +7,10 @@
         function Welcome(){
             $model = $this->model("ChuyenGiaModel");
             $ds = $model->danhSachSanPham();
-            $this->view("ChuyenGia/Home",["view"=>"ChuyenGia/Welcome","data" => $ds]);
+            $this->view("ChuyenGia/Home",["view"=>"ChuyenGia/Welcome","data" => $ds,"page_title"=> "Trang chuyên gia"]);
         }
         function about(){
-            $this->view("ChuyenGia/Home",["view"=>"ChuyenGia/About"]);
+            $this->view("ChuyenGia/Home",["view"=>"ChuyenGia/About","page_title"=>"Thông tin người dùng"]);
         }
         function DanhGiaSanPham($id_dg="",$id_sp=""){
             $model = $this->model("ChuyenGiaModel");
@@ -25,7 +25,7 @@
             }
             // var_dump($phieu);
 
-            $this->view("ChuyenGia/Home",["view"=>"ChuyenGia/DanhGiaSanPham","san_pham"=>$san_pham,"phieu"=>$phieu, "id_dg"=>$id_dg]);
+            $this->view("ChuyenGia/Home",["view"=>"ChuyenGia/DanhGiaSanPham","san_pham"=>$san_pham,"phieu"=>$phieu, "id_dg"=>$id_dg,"page_title"=>"Đánh giá sản phẩm "]);
         }
         function LuuDiem($id_dg="",$id_sp=""){
             $message = "";

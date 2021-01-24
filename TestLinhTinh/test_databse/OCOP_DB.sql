@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jan 12, 2021 at 03:20 PM
+-- Generation Time: Jan 24, 2021 at 08:50 AM
 -- Server version: 8.0.22-0ubuntu0.20.04.3
 -- PHP Version: 7.4.3
 
@@ -39,52 +39,70 @@ CREATE TABLE `chuyen_gia` (
 
 INSERT INTO `chuyen_gia` (`username`, `phan_nhom`) VALUES
 ('chuyengiaa', 1),
-('chuyengiab', 2);
+('chuyengiab', 1),
+('khai69', 2);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `nhom_danh_gia`
+-- Table structure for table `ct_danh_gia`
 --
 
-CREATE TABLE `nhom_danh_gia` (
-  `id_nhom` int NOT NULL,
-  `chuyen_gia` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
-  `sp` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
-  `status` int DEFAULT NULL
+CREATE TABLE `ct_danh_gia` (
+  `id_dg` int NOT NULL,
+  `san_pham` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
+  `status` int DEFAULT '0',
+  `nguoi_cham` varchar(32) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `nhom_danh_gia`
+-- Dumping data for table `ct_danh_gia`
 --
 
-INSERT INTO `nhom_danh_gia` (`id_nhom`, `chuyen_gia`, `sp`, `status`) VALUES
-(1, 'chuyengiaa', '03-19-01', 0),
-(1, 'chuyengiaa', '03-19-02', 0);
+INSERT INTO `ct_danh_gia` (`id_dg`, `san_pham`, `status`, `nguoi_cham`) VALUES
+(4, '03-19-01', 1, 'chuyengiaa'),
+(4, '03-19-01', 1, 'chuyengiab');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ql_danh_gia`
+-- Table structure for table `danh_gia`
 --
 
-CREATE TABLE `ql_danh_gia` (
-  `id` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
-  `cap_danh_gia` int NOT NULL,
-  `lan_danh_gia` int NOT NULL,
-  `begin` date NOT NULL,
-  `end` date NOT NULL
+CREATE TABLE `danh_gia` (
+  `id` int NOT NULL,
+  `ngay_them` datetime DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `ql_danh_gia`
+-- Dumping data for table `danh_gia`
 --
 
-INSERT INTO `ql_danh_gia` (`id`, `cap_danh_gia`, `lan_danh_gia`, `begin`, `end`) VALUES
-('1', 1, 1, '2021-01-12', '2021-01-13'),
-('1', 1, 2, '2021-01-14', '2021-01-15'),
-('1', 2, 1, '2021-01-16', '2021-01-17'),
-('1', 2, 2, '2021-01-18', '2021-01-19');
+INSERT INTO `danh_gia` (`id`, `ngay_them`) VALUES
+(4, '2021-01-20 16:15:01');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `kq_danh_gia`
+--
+
+CREATE TABLE `kq_danh_gia` (
+  `id_dg` int NOT NULL,
+  `nguoi_cham` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
+  `san_pham` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
+  `phan_a` int NOT NULL,
+  `phan_b` int NOT NULL,
+  `phan_c` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `kq_danh_gia`
+--
+
+INSERT INTO `kq_danh_gia` (`id_dg`, `nguoi_cham`, `san_pham`, `phan_a`, `phan_b`, `phan_c`) VALUES
+(4, 'chuyengiaa', '03-19-01', 15, 25, 25),
+(4, 'chuyengiab', '03-19-01', 20, 25, 20);
 
 -- --------------------------------------------------------
 
@@ -126,8 +144,7 @@ CREATE TABLE `san_pham` (
 --
 
 INSERT INTO `san_pham` (`id`, `ten_sp`, `chu_the_sx`, `dia_chi`, `hinh_sp`, `link_ho_so`, `phan_nhom`) VALUES
-('03-19-01', 'Rau dền', 'NNCpro', 'Tam Nông - Phú Thọ', 'null', 'null', 1),
-('03-19-02', 'Óc chó', 'khaiKK', 'Bắc Giang', 'null', 'null', 1);
+('03-19-01', 'Rau dền', 'Gia Đình Nông Văn Dân', 'Bắc Giang', './asset/image/upload/product/Mrd.jpg', '', 1);
 
 -- --------------------------------------------------------
 
@@ -3040,24 +3057,6 @@ INSERT INTO `tb_nhom_sp` (`id_nhom_sp`, `ten_nhom_sp`, `nganh_sp`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tb_nhom_sp_bo_tc`
---
-
-CREATE TABLE `tb_nhom_sp_bo_tc` (
-  `nhomsp` int NOT NULL,
-  `bo_tc` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Dumping data for table `tb_nhom_sp_bo_tc`
---
-
-INSERT INTO `tb_nhom_sp_bo_tc` (`nhomsp`, `bo_tc`) VALUES
-(1, 1);
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `tb_phan_nhom_sp`
 --
 
@@ -3098,25 +3097,6 @@ INSERT INTO `tb_phan_nhom_sp` (`id_phan_nhom`, `ten_phan_nhom`, `nhom`) VALUES
 (24, 'Thủ công mỹ nghệ gia dụng', 14),
 (25, 'Vải, may mặc', 15),
 (26, 'Dịch vụ du lịch - truyền thống - lễ hội', 16);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tb_phieu_kq_cham`
---
-
-CREATE TABLE `tb_phieu_kq_cham` (
-  `cap_cham` int NOT NULL,
-  `lan_cham` int NOT NULL,
-  `nguoi_cham` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
-  `id_sp` int NOT NULL,
-  `id_phan_nhom` int NOT NULL,
-  `id_phan` int NOT NULL,
-  `id_nhom_tc` int NOT NULL,
-  `id_tc` int NOT NULL,
-  `id_lua_chon` int NOT NULL,
-  `diem` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -3191,9 +3171,23 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`username`, `password`, `ho_ten`, `gioi_tinh`, `ngay_sinh`, `dia_chi`, `sdt`, `email`, `avatar`, `ngay_them`, `login_status`, `last_login`, `user_status`, `role`) VALUES
-('admin', '12345', 'Nguyễn Ngọc Công', 1, '1998-07-11', 'Tam Nông - Phú Thọ', '0352765398', 'nnc@email.com', 'https://scontent.fhan5-6.fna.fbcdn.net/v/t1.0-9/40269364_2106065822990225_1622648458429071360_n.jpg?_nc_cat=105&ccb=2&_nc_sid=174925&_nc_ohc=cTH9tgoeK48AX8M28Kc&_nc_ht=scontent.fhan5-6.fna&oh=db1d24d6cbce1d073fc6981192dac7d4&oe=601B8AC1', '2021-01-07 15:08:16', 1, '2021-01-12 04:03:29', 1, 1),
-('chuyengiaa', '123', 'Nguyễn Văn Tí', 1, '1998-07-11', 'Hà Nội', '123456', 'ti@mail', NULL, '2021-01-12 14:41:39', 0, '2021-01-12 07:41:39', 1, 2),
-('chuyengiab', '123', 'Nguyễn Thị Tèo', 0, '1998-07-11', 'Hà Giang', '1123242', 'teo@email.com', './asset/image/upload/diepavt.jpg', '2021-01-12 14:42:24', 0, '2021-01-12 07:42:24', 1, 2);
+('admin', '12345', 'Nguyễn Ngọc Công', 1, '1998-07-11', 'Tam Nông - Phú Thọ', '0352765398', 'nnc@email.com', 'https://scontent.fhan5-6.fna.fbcdn.net/v/t1.0-9/40269364_2106065822990225_1622648458429071360_n.jpg?_nc_cat=105&ccb=2&_nc_sid=174925&_nc_ohc=cTH9tgoeK48AX8M28Kc&_nc_ht=scontent.fhan5-6.fna&oh=db1d24d6cbce1d073fc6981192dac7d4&oe=601B8AC1', '2021-01-07 15:08:16', 0, '2021-01-21 16:18:01', 1, 1),
+('chuyengiaa', '123', 'Trần Văn Tí', 1, '1998-07-11', 'Hà Nội', '123456', 'ti@mail', '', '2021-01-12 14:41:39', 0, '2021-01-21 16:14:53', 1, 2),
+('chuyengiab', '123', 'Nguyễn Thị Tèo', 0, '1998-07-11', 'Hà Giang', '1123242', 'teo@email.com', './asset/image/upload/diepavt.jpg', '2021-01-12 14:42:24', 0, '2021-01-20 10:10:08', 1, 2),
+('khai69', '123', 'Trương Văn Khải', 1, '1997-01-01', 'Bắc Giang', '0352421315', 'khai@mail.com', './asset/image/upload/khaiAvatar.jpg', '2021-01-19 17:55:16', 0, '2021-01-19 14:29:50', 1, 2),
+('tnnhong', '123', 'Trần Như Nhộng', 0, '2021-01-21', 'Ninh Bình', '0352421315', 'ngoccong.nncpro@gmail.com', './asset/image/upload/FB_IMG_1610867257215.jpg', '2021-01-21 21:53:53', 0, NULL, 1, 2);
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `v_chuyen_gia_phan_nhom`
+-- (See below for the actual view)
+--
+CREATE TABLE `v_chuyen_gia_phan_nhom` (
+`username` varchar(32)
+,`ho_ten` varchar(50)
+,`phan_nhom` int
+);
 
 -- --------------------------------------------------------
 
@@ -3208,20 +3202,6 @@ CREATE TABLE `v_list_user` (
 ,`gioi_tinh` tinyint(1)
 ,`ngay_them` datetime
 ,`role` varchar(50)
-);
-
--- --------------------------------------------------------
-
---
--- Stand-in structure for view `v_pcd`
--- (See below for the actual view)
---
-CREATE TABLE `v_pcd` (
-`Phan` text
-,`NhomTc` text
-,`TieuChi` text
-,`LuaChon` text
-,`Diem` int
 );
 
 -- --------------------------------------------------------
@@ -3243,20 +3223,20 @@ CREATE TABLE `v_tt_sp` (
 -- --------------------------------------------------------
 
 --
+-- Structure for view `v_chuyen_gia_phan_nhom`
+--
+DROP TABLE IF EXISTS `v_chuyen_gia_phan_nhom`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`nncpro`@`localhost` SQL SECURITY DEFINER VIEW `v_chuyen_gia_phan_nhom`  AS  select `user`.`username` AS `username`,`user`.`ho_ten` AS `ho_ten`,`chuyen_gia`.`phan_nhom` AS `phan_nhom` from (`user` left join `chuyen_gia` on((`chuyen_gia`.`username` = `user`.`username`))) where (`user`.`role` = 2) ;
+
+-- --------------------------------------------------------
+
+--
 -- Structure for view `v_list_user`
 --
 DROP TABLE IF EXISTS `v_list_user`;
 
 CREATE ALGORITHM=UNDEFINED DEFINER=`nncpro`@`localhost` SQL SECURITY DEFINER VIEW `v_list_user`  AS  select `user`.`username` AS `username`,`user`.`avatar` AS `avatar`,`user`.`ho_ten` AS `ho_ten`,`user`.`gioi_tinh` AS `gioi_tinh`,`user`.`ngay_them` AS `ngay_them`,`role`.`role` AS `role` from (`user` join `role` on((`user`.`role` = `role`.`id`))) ;
-
--- --------------------------------------------------------
-
---
--- Structure for view `v_pcd`
---
-DROP TABLE IF EXISTS `v_pcd`;
-
-CREATE ALGORITHM=UNDEFINED DEFINER=`nncpro`@`localhost` SQL SECURITY DEFINER VIEW `v_pcd`  AS  select `tb_bo_tieu_chi`.`phan` AS `Phan`,`tb_bo_tieu_chi`.`nhom_tc` AS `NhomTc`,`tb_bo_tieu_chi`.`tieu_chi` AS `TieuChi`,`tb_bo_tieu_chi`.`lua_chon` AS `LuaChon`,`tb_bo_tieu_chi`.`diem` AS `Diem` from ((`tb_bo_tieu_chi` join `tb_nhom_sp_bo_tc` on((`tb_bo_tieu_chi`.`id` = `tb_nhom_sp_bo_tc`.`bo_tc`))) join `tb_phan_nhom_sp` on((`tb_nhom_sp_bo_tc`.`nhomsp` = `tb_phan_nhom_sp`.`id_phan_nhom`))) ;
 
 -- --------------------------------------------------------
 
@@ -3278,16 +3258,26 @@ ALTER TABLE `chuyen_gia`
   ADD PRIMARY KEY (`username`);
 
 --
--- Indexes for table `nhom_danh_gia`
+-- Indexes for table `ct_danh_gia`
 --
-ALTER TABLE `nhom_danh_gia`
-  ADD PRIMARY KEY (`id_nhom`,`chuyen_gia`,`sp`);
+ALTER TABLE `ct_danh_gia`
+  ADD PRIMARY KEY (`id_dg`,`san_pham`,`nguoi_cham`),
+  ADD KEY `san_pham` (`san_pham`),
+  ADD KEY `nguoi_cham` (`nguoi_cham`);
 
 --
--- Indexes for table `ql_danh_gia`
+-- Indexes for table `danh_gia`
 --
-ALTER TABLE `ql_danh_gia`
-  ADD PRIMARY KEY (`id`,`cap_danh_gia`,`lan_danh_gia`);
+ALTER TABLE `danh_gia`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `kq_danh_gia`
+--
+ALTER TABLE `kq_danh_gia`
+  ADD PRIMARY KEY (`id_dg`,`nguoi_cham`,`san_pham`),
+  ADD KEY `san_pham` (`san_pham`),
+  ADD KEY `nguoi_cham` (`nguoi_cham`);
 
 --
 -- Indexes for table `role`
@@ -3299,7 +3289,8 @@ ALTER TABLE `role`
 -- Indexes for table `san_pham`
 --
 ALTER TABLE `san_pham`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_sp_phan_nhom` (`phan_nhom`);
 
 --
 -- Indexes for table `tb_bo_ql`
@@ -3328,13 +3319,6 @@ ALTER TABLE `tb_nhom_sp`
   ADD KEY `fk_nhom-nganh` (`nganh_sp`);
 
 --
--- Indexes for table `tb_nhom_sp_bo_tc`
---
-ALTER TABLE `tb_nhom_sp_bo_tc`
-  ADD PRIMARY KEY (`nhomsp`),
-  ADD KEY `fk_to_bo_tc` (`bo_tc`);
-
---
 -- Indexes for table `tb_phan_nhom_sp`
 --
 ALTER TABLE `tb_phan_nhom_sp`
@@ -3359,6 +3343,12 @@ ALTER TABLE `user`
 --
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `danh_gia`
+--
+ALTER TABLE `danh_gia`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `role`
@@ -3401,17 +3391,44 @@ ALTER TABLE `tb_pnhom_bo`
 --
 
 --
+-- Constraints for table `chuyen_gia`
+--
+ALTER TABLE `chuyen_gia`
+  ADD CONSTRAINT `chuyen_gia_ibfk_1` FOREIGN KEY (`username`) REFERENCES `user` (`username`) ON UPDATE CASCADE;
+
+--
+-- Constraints for table `ct_danh_gia`
+--
+ALTER TABLE `ct_danh_gia`
+  ADD CONSTRAINT `ct_danh_gia_ibfk_1` FOREIGN KEY (`id_dg`) REFERENCES `danh_gia` (`id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `ct_danh_gia_ibfk_2` FOREIGN KEY (`san_pham`) REFERENCES `san_pham` (`id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `ct_danh_gia_ibfk_3` FOREIGN KEY (`nguoi_cham`) REFERENCES `chuyen_gia` (`username`) ON UPDATE CASCADE;
+
+--
+-- Constraints for table `kq_danh_gia`
+--
+ALTER TABLE `kq_danh_gia`
+  ADD CONSTRAINT `kq_danh_gia_ibfk_1` FOREIGN KEY (`id_dg`) REFERENCES `danh_gia` (`id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `kq_danh_gia_ibfk_2` FOREIGN KEY (`san_pham`) REFERENCES `san_pham` (`id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `kq_danh_gia_ibfk_3` FOREIGN KEY (`nguoi_cham`) REFERENCES `chuyen_gia` (`username`) ON UPDATE CASCADE;
+
+--
+-- Constraints for table `san_pham`
+--
+ALTER TABLE `san_pham`
+  ADD CONSTRAINT `fk_sp_phan_nhom` FOREIGN KEY (`phan_nhom`) REFERENCES `tb_phan_nhom_sp` (`id_phan_nhom`) ON UPDATE CASCADE;
+
+--
+-- Constraints for table `tb_bo_tieu_chi`
+--
+ALTER TABLE `tb_bo_tieu_chi`
+  ADD CONSTRAINT `tb_bo_tieu_chi_ibfk_1` FOREIGN KEY (`id`) REFERENCES `tb_phan_nhom_sp` (`id_phan_nhom`) ON UPDATE CASCADE;
+
+--
 -- Constraints for table `tb_nhom_sp`
 --
 ALTER TABLE `tb_nhom_sp`
   ADD CONSTRAINT `fk_nhom-nganh` FOREIGN KEY (`nganh_sp`) REFERENCES `tb_nganh_sp` (`id_nganh`) ON UPDATE CASCADE;
-
---
--- Constraints for table `tb_nhom_sp_bo_tc`
---
-ALTER TABLE `tb_nhom_sp_bo_tc`
-  ADD CONSTRAINT `fk_to_bo_tc` FOREIGN KEY (`bo_tc`) REFERENCES `tb_bo_tieu_chi` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_to_phan_nhom_sp` FOREIGN KEY (`nhomsp`) REFERENCES `tb_phan_nhom_sp` (`id_phan_nhom`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `tb_phan_nhom_sp`
