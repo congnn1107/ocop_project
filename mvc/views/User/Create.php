@@ -108,7 +108,7 @@
             <label for="">Vai trò: </label>
             <select name="role" id="">
                 <option value="1">Admin</option>
-                <option value="2">Chuyên gia</option>
+                <option value="2" selected>Chuyên gia</option>
             </select>
         </div>
 

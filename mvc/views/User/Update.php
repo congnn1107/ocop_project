@@ -110,7 +110,7 @@
         </div>
         <div class="form-control">
             <span>Vai trò :</span>
-            <select name="role" id="">
+            <select name="role" disabled id="">
                 <option value="1" <?php echo $user->role==1?"selected":""?>>Admin</option>
                 <option value="2" <?php echo $user->role==2?"selected":""?>>Chuyên Gia</option>
             </select>

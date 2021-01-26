@@ -15,6 +15,9 @@
         function DanhGiaSanPham($id_dg="",$id_sp=""){
             $model = $this->model("ChuyenGiaModel");
             // echo $id_dg.";".$id_sp;
+            if(!$model->kiemTraSanPhamHopLe($id_dg,$id_sp)){
+                header("Location: ?url=ChuyenGia");
+            }
             $san_pham = $model->thongTinSanPham($id_sp);
             $id_phieu = 0;
             $phieu =[];

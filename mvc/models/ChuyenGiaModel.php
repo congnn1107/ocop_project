@@ -7,8 +7,10 @@
             return $result;
         }
         function setVaiTro(){
-            $sql = "truncate table chuyen_gia";
-            $this->executeQuery($sql);
+            $sql = "set FOREIGN_KEY_CHECKS=0; ";
+            $sql .="truncate table chuyen_gia; ";
+            $sql .= "set FOREIGN_KEY_CHECKS=1";
+            $this->executeMultiQuery($sql);
             $sql ="insert into chuyen_gia values";
             foreach($_POST["cg"] as $row){
 
@@ -20,6 +22,7 @@
 
             $result= $this->executeQuery($sql);
             // echo $this->conn->error;
+            var_dump($result);
             return $result;
             // return true;
         }
@@ -34,6 +37,13 @@
                 ];
             }
             return $arr;
+        }
+        function kiemTraSanPhamHopLe($id_dg, $id_sp){
+            $chuyen_gia = $_SESSION['user']['username'];
+            $sql = "select count(san_pham) as count from ct_danh_gia where id_dg='$id_dg' and san_pham='$id_sp' and nguoi_cham='$chuyen_gia'";
+            $result = $this->executeQuery($sql);
+            return $result->fetch_assoc()["count"]!=0;
+
         }
         function danhSachSanPham(){
             $chuyen_gia = $_SESSION["user"]["username"];

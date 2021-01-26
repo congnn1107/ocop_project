@@ -24,7 +24,11 @@ function uploadHinhSP($img){
 }
 function deleteFile($file_name){
     if(file_exists($file_name)){
-        return unlink($file_name);
+        if(unlink($file_name)){
+            return 1;
+        }else{
+            -1;
+        }
     }
-    return false;
+    return 2;
 }

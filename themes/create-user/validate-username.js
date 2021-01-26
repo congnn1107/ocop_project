@@ -32,10 +32,11 @@ function ktraTonTai(e){
 //Hàm Kiểm tra hợp lệ trường username
 function validateInputUserName(e){
     value = txt.value.trim();
-    regex = new RegExp("^[A-Za-z][A-Za-z0-9]*")
-    match = regex.test(value);
+    regex = /^[A-Za-z][a-zA-z0-9]*$/
+    match = value.match(regex);
+    console.log(match);
     // console.log(match);
-    if(value.length < 5 || value.length>32 || match==false){
+    if(value.length < 5 || value.length>32 || match==null){
         info.innerText="* Username không hợp lệ!";
         info.style.color="red";
         btnSubmit.disabled="true";

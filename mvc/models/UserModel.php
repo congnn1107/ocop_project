@@ -70,8 +70,11 @@
             return $result;
         }
         function delete($username){
-            $sql = "delete from user where username = '$username'";
-            $result = $this->executeQuery($sql);
+            $sql = "delete from kq_danh_gia where nguoi_cham='$username'; ";
+            $sql .= "delete from ct_danh_gia where nguoi_cham='$username'; ";
+            $sql .= "delete from chuyen_gia where username='$username';";
+            $sql .= "delete from user where username = '$username'";
+            $result = $this->executeMultiQuery($sql);
             return $result;
         }
 

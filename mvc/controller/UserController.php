@@ -50,11 +50,11 @@
             //xóa avatar nếu có
             $avatar = $model->get($username)->avatar;
             if($avatar!=""){
-                if(deleteFile($avatar)){
+                if(deleteFile($avatar)<0){
                     echo("File đã xoá thành công");
                 }else{
                     echo("Lỗi khi xóa file");
-                    die();
+                    // die();
                 }
             }
             //xóa user

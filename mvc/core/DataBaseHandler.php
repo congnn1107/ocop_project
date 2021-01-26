@@ -41,5 +41,18 @@
                 $this->conn = null;
             }
         }
+        function executeMultiQuery($sql){
+            $result = null;
+            $this->getConnection();
+            if($this->conn){
+                $result = $this->conn->multi_query($sql);
+                if($this->conn->store_result()){
+                    $result = $this->conn->store_result();
+                }
+            }
+            $this->closeConnection();
+            // var_dump($result);
+            return $result;
+        }
 
     }
