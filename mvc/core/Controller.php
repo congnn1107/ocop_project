@@ -40,4 +40,9 @@ class Controller{
             header('Location: ?url=ChuyenGia');
         }
     }
+    function checkChuyenGia(){
+        if($_SESSION['user']['role']!=2){
+            header('Location: ?url=Admin');
+        }
+    }
 }

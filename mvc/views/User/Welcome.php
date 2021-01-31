@@ -70,7 +70,11 @@
         <td><?php echo $row['ngay_them']?></td>
         <td><?php echo $row['role']?></td>
         <td><a href="?url=Admin/ChiTietUser/<?php echo $row['username'] ?>">Xem chi tiết</a></td>
-        <td><a href="?url=Admin/XoaUser/<?php echo $row['username'] ?>" onclick="return confirm('Bạn có chắc muốn xóa user <?php echo $row['ho_ten']?>')">Xóa</a></td>
+        <td>
+            <?php if($row["username"]!=$_SESSION["user"]["username"]){?>
+            <a href="?url=Admin/XoaUser/<?php echo $row['username'] ?>" onclick="return confirm('Bạn có chắc muốn xóa user <?php echo $row['ho_ten']?>')">Xóa</a>
+            <?php } ?>
+        </td>
     </tr>
 
 <?php

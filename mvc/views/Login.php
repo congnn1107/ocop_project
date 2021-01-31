@@ -35,7 +35,7 @@
                 <p id="error-message"><?php echo $params['errMess']?></p>
                 <div class="form-check"><input type="checkbox" name="remember" id="remember" <?php  echo $checked?"checked":"" ?>><span>Nhớ mật khẩu?</span></div>
                 <div class="form-btn"><button name="login" type="submit">Đăng nhập</button></div>
-                <a href="">Quên mật khẩu?</a>
+                <!-- <a href="">Quên mật khẩu?</a> -->
             </form>
         </div>
     </div>

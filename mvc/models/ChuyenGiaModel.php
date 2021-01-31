@@ -22,7 +22,7 @@
 
             $result= $this->executeQuery($sql);
             // echo $this->conn->error;
-            var_dump($result);
+            // var_dump($result);
             return $result;
             // return true;
         }

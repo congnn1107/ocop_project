@@ -1,2 +1,2 @@
 <?php
-echo "Đéo thấy!";
+echo "Không thấy!";

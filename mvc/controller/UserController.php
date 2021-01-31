@@ -4,11 +4,13 @@
             $this->auth();
         }
         function Welcome(){
+            $this->checkAdmin();
             $model = $this->model("UserModel");
             $data = $model->getList();
             $this->view("Admin/Home",["view"=>"User/Welcome","data"=>$data]);
         }
         function Create(){
+            $this->checkAdmin();
             // $message="";
             if(isset($_POST['create'])){
                 // $message="* Thông báo ở đây!";
@@ -46,6 +48,8 @@
             $this->view("Admin/Home",["view"=>"User/Create","message"=>$message]);
         }
         function deleteUser($username){
+            $this->checkAdmin();
+
             $model = $this->model("UserModel");
             //xóa avatar nếu có
             $avatar = $model->get($username)->avatar;
@@ -74,6 +78,8 @@
             echo json_encode($result);
         }
         function update($username){
+            $this->checkAdmin();
+            
             $userEntity=null;
             $message="";
             if(isset($_POST['save'])){
@@ -100,6 +106,12 @@
                     $_POST['user_status']
                 );
                 $result = $model->update($userEntity);
+                if($result){
+                    $message ="Đã cập nhật thành công!";
+                }
+                else{
+                    $message = "Có lỗi xảy ra!";
+                }
 
                 
                 //TODO: kiểm tra kết quả update rồi trả về thông báo update thành công hay thất bại

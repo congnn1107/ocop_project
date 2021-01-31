@@ -5,7 +5,4 @@
         function Welcome(){
             $this->view('Welcome');
         }
-        function Chui($name){
-            $this->view("Chui",["name"=>$name]);
-        }
     }

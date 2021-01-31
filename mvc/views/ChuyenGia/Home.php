@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
     <title><?php echo $params['page_title'] ?> - OCOP</title>
     <link rel="stylesheet" href="./themes/trang-chuyen-gia/css/style.css">
 </head>

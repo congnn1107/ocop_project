@@ -3,6 +3,7 @@
         function __construct()
         {
             $this->auth();
+            $this->checkChuyenGia();
         }
         function Welcome(){
             $model = $this->model("ChuyenGiaModel");
