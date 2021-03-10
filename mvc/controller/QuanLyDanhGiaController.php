@@ -32,7 +32,8 @@
         function detailSanPhamDG($id_dg,$id_sp){
             $info = $this->model("ChuyenGiaModel")->thongTinSanPham($id_sp);
             $list = $this->model("DanhGiaModel")->ketQuaSanPham($id_dg,$id_sp);
-            $this->view("Admin/Home",["view"=>"QuanLyDanhGia/ChiTietSanPhamDanhGia","info"=>$info,"list"=>$list,"id_dg"=>$id_dg]);
+            $status = $this->model("DanhGiaModel")->trangThaiSanPham($id_dg,$id_sp);
+            $this->view("Admin/Home",["view"=>"QuanLyDanhGia/ChiTietSanPhamDanhGia","info"=>$info,"list"=>$list,"id_dg"=>$id_dg,"status"=>$status]);
         }
         function Update($id){
             $model = $this->model("DanhGiaModel");

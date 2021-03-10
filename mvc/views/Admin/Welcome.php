@@ -1,5 +1,6 @@
 <style>
         .main-div{
+            padding: 2rem;
             height: 400px;
         }
         .main-div a{
@@ -12,7 +13,7 @@
             box-shadow: 1px 1px 2px gray;
             display: flex;
             align-items: center;
-            border-radius: 15px;
+            border-radius: 5px;
             transition: all ease-in-out 0.3s;
         }
         .main-div a:hover span{

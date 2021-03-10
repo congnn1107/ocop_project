@@ -12,7 +12,7 @@
             <hr>
             <div class="nav-items">
                 <div class="nav-item">
-                    <p>Quản lý</p>
+                    <span>Quản lý</span>
                     <div class="nav-sub-items">
                         <a href="?url=Admin/QuanLyUser">Quản lý Users</a>
                         <!-- <div class="nav-sub-item">Quản lý</div> -->

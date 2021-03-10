@@ -49,6 +49,12 @@
          }
          return $arr;
      }
+     function trangThaiSanPham($id_dg,$id_sp){
+         $sql = "SELECT count(id_dg) as 'count' FROM `ct_danh_gia` WHERE id_dg=$id_dg and san_pham='$id_sp' and status = 0";
+         $result = $this->executeQuery($sql);
+         $count = $result->fetch_assoc()['count'];
+         return $count == 0;
+     }
      function delete($id){
         $sql = " delete from kq_danh_gia where id_dg=$id";
         $result = $this->executeQuery($sql);

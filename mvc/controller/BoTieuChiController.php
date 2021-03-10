@@ -16,6 +16,16 @@
             // $this->view("Product/PhieuDanhGia",["data" => $object, "name"=>$name]);
             $this->view("Admin/Home",["data" => $object, "name"=>$name,'view'=>"BoTieuChi/PhieuDanhGia"]);
         }
+        function Update(){
+            $model = $this->model('PhieuDanhGia');
+            $result = $model->UpdateBoTC();
+            if($result){
+                $_SESSION['message']="Đã cập nhật danh sách bộ tiêu chí!";
+            }else{
+                $_SESSION['message']="Cập nhật xảy ra lỗi!";
+            }
+            header("Location: ?url=Admin/QuanLyTieuChi");
+        }
         function DanhSach(){
             $model = $this->model("PhieuDanhGia");
             $data = $model->layDS();

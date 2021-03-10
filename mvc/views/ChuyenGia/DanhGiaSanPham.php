@@ -73,7 +73,7 @@
     <div class="line">
         <p>Ảnh sản phẩm:</p>
         <div class="picture">
-            <img src="<?php $san_pham["hinh"]?>" alt="Ảnh sản phẩm">
+            <img src="<?php echo $san_pham["hinh"]?>" alt="Ảnh sản phẩm">
         </div>
     </div>
     <div class="line">

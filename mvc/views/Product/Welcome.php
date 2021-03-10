@@ -43,6 +43,12 @@
     .list-san-pham a:visited{
         color: tomato;
     }
+    .list-san-pham table a img{
+        display: inline-block;
+        vertical-align: bottom;
+        width: 20px;
+        height: 20px;
+    }
 
 </style>
 <!-- Danh sách Sản phẩm -->
@@ -69,8 +75,8 @@
         <td><?php echo $row['chu_the_sx']?></td>
         <td><?php echo $row['dia_chi']?></td>
         <td><?php echo $row['phan_nhom']?></td>
-        <td><a href="?url=Admin/UpdateSanPham/<?php echo $row['id'] ?>">Cập nhật</a></td>
-        <td><a href="?url=Admin/DeleteSanPham/<?php echo $row['id'] ?>" onclick="return confirm('Bạn có chắc muốn xóa sản phẩm <?php echo $row['ten_sp']?>')">Xóa</a></td>
+        <td><a href="?url=Admin/UpdateSanPham/<?php echo $row['id'] ?>"><img src="https://img.icons8.com/nolan/64/edit--v1.png"/>Cập nhật</a></td>
+        <td><a href="?url=Admin/DeleteSanPham/<?php echo $row['id'] ?>" onclick="return confirm('Bạn có chắc muốn xóa sản phẩm <?php echo $row['ten_sp']?>')"><img src="https://img.icons8.com/dusk/64/000000/trash.png"/>Xóa</a></td>
     </tr>
 
 <?php

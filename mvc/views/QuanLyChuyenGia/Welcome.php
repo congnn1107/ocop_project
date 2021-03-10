@@ -19,17 +19,22 @@
          border: none;
          background-color: white;
          outline-color: green;
+         width: 100%;
      }
      .form-btn{
          text-align: center;
      }
+     .table-header{
+        color: white;
+        background-color: green;
+    }
 </style>
 <h1>
     Danh Sách chuyên Gia
 </h1>
 <form action="" method="post">
     <table border="1">
-        <tr>
+        <tr class="table-header">
             <th>Chuyên gia</th>
             <th>Phân nhóm</th>
         </tr>

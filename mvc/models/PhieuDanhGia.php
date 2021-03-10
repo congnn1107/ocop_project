@@ -6,7 +6,7 @@
 
         /**
          * Hàm đưa ra mảng kết hợp các thành phần tạo nên 1 phiếu chấm điểm
-         * Note: lỗi ở các nhóm không có tiêu chí con (12/11/2020)
+         * Note: lỗi ở các nhóm không có tiêu chí con (12/11/2020)-> solved
          */
         function get($id){
             $sql = "select distinct id_phan, phan from tb_bo_tieu_chi where id='$id'";
@@ -78,6 +78,123 @@
 
             
         }
+
+        //Begin Update bộ tiêu chí bằng excel
+        /**
+         * 
+         * 
+         */
+        function UpdateBoTC(){
+            //Nhận file excel upload
+            $file = $_FILES['file-upload'];
+            $file = uploadExcel($file);
+            // var_dump($file);
+            //đọc file//đưa vào db
+            if($file!=false){
+                $this->readExcel($file);
+            }
+            else{
+                return false;
+            }
+            //xóa file
+            if(deleteFile($file)!=1) return false;
+            //trả kết quả
+
+            return true;
+        }
+        private function readExcel($file){
+            if(!class_exists("PHPExcel_IOFactory")){
+                include_once('./mvc/core/Excel/PHPExcel.php');
+            }
+            $excel = PHPExcel_IOFactory::load($file);
+            $sheetCount = $excel->getSheetCount();
+            //echo $sheetCount;
+            $this->clear();
+            for($i=0;$i<$sheetCount;$i++){
+                $excel->setActiveSheetIndex($i);
+                $worksheet = $excel->getActiveSheet();
+                $this->importDataFromSheet($worksheet,$i);
+            }
+
+            return true;
+            
+    
+        }
+        function import($row){
+            $sql = "insert tb_bo_tieu_chi(id,id_phan,phan,id_nhom_tc,nhom_tc,id_tieu_chi,tieu_chi,id_lua_chon,lua_chon,diem)
+                values('$row[0]','$row[2]','$row[3]','$row[4]','$row[5]','$row[6]','$row[7]','$row[8]','$row[9]',$row[10])";
+            //echo $sql;
+            $result = $this->executeQuery($sql);
+            return $result;
+            // if($result){
+            //     return $result;
+            // }else echo $this->conn->error."\n SQL: $sql\n". var_dump($row)."\n";
+        }
+        private function importDataFromSheet($worksheet,$idSheet){
+            $highestColumn = $worksheet->getHighestDataColumn();
+            //trường hợp không nhận diện được
+            if($highestColumn!='F') $highestColumn='F';
+            $n = PHPExcel_Cell::columnIndexFromString($highestColumn);
+            $m = $worksheet->getHighestDataRow($highestColumn);
+     
+            //hàng lấy từ 1, cột lấy từ 0
+            $id = [$idSheet,0,0,0,0];
+            $content = ['','','','','',''];
+            $flag=0;
+            for($i = 2; $i<=$m;$i++){
+                $row =[];
+                for($j = 0;$j<$n;$j++){
+                    //lấy dữ liệu từ ô hàng j cột i
+                    $data = $worksheet->getCellByColumnAndRow($j,$i)->getValue();
+    
+                    //nếu có dữ liệu thì sẽ gán vào biến lưu trữ
+                    if($data!=NULL){
+                        $content[$j] = $data;
+    
+                        //tăng id của cột hiện tại lên 1 và id cột con của nó về 0
+                        $id[$j]++;
+                        $id[$j+1]=0;
+    
+                    };
+                    //trường hợp gặp cột cuối (cột điểm )
+                    if($j==$n-1){
+                        $content[$j] = $data;
+                       // echo $content[$j];
+                        // if($content[$j]==NULL) echo $worksheet->getCellByColumnAndRow($j,$i)->getValue()."\n";
+                    }
+    
+                    $flag=$j;
+                    if($j<$n-1) $row[]= $id[$flag];
+    
+                    $row[] = $content[$j];
+    
+                    if($flag==count($id)-1) $flag=0;
+    
+    
+                }
+                $this->import($row);
+            }
+            //if($idSheet==1) echo 'ID bộ:'.$id[0].", Columns: $highestColumn, Rows: $m\n";
+            // echo "\nSheet $idSheet - Done!\n";
+        }
+
+        private function clear(){
+            global $conn;
+            $sql = 'delete from tb_bo_tieu_chi';
+            if($this->executeQuery($sql)==true){
+                return true;
+            }else{
+                // echo $this->conn->error;
+                return false;
+            }
+            
+    
+        }
+        //End update bộ tiêu chí bằng excel
+        /**
+         * 
+         * 
+         */
 
         function layDS(){
             $sql = "SELECT id_phan_nhom,ten_phan_nhom FROM `tb_phan_nhom_sp` WHERE 1";

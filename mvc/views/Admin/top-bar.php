@@ -8,6 +8,6 @@
                 
             </div>
             <nav class="right">
-                <a href="?url=Validate/logout">Logout</a>
+                <a href="?url=Validate/logout" title="Đăng xuất">Logout</a>
             </nav>
 </header>

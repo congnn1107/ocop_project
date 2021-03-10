@@ -14,6 +14,14 @@ function uploadImage($img){
     }
     return false;
 }
+function uploadExcel($excel){
+    $target_path = "./asset/file/";
+    $target_file = $target_path.$excel['name'];
+    if(move_uploaded_file($excel['tmp_name'],$target_file)){
+        return $target_file;
+    }
+    return false;
+}
 function uploadHinhSP($img){
     $target_path = "./asset/image/upload/product/";
     $target_file = $target_path.$img['name'];

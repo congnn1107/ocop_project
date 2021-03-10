@@ -43,6 +43,12 @@
     .list-user a:visited{
         color: tomato;
     }
+    .list-user table a img{
+        display: inline-block;
+        vertical-align: bottom;
+        width: 20px;
+        height: 20px;
+    }
 
 </style>
 <!-- Danh sách User -->
@@ -69,10 +75,10 @@
         <td><?php echo $row['gioi_tinh']>0?"Nam":"Nữ"?></td>
         <td><?php echo $row['ngay_them']?></td>
         <td><?php echo $row['role']?></td>
-        <td><a href="?url=Admin/ChiTietUser/<?php echo $row['username'] ?>">Xem chi tiết</a></td>
+        <td><a href="?url=Admin/ChiTietUser/<?php echo $row['username'] ?>"><img src="https://img.icons8.com/nolan/64/view-details.png"/>Xem chi tiết</a></td>
         <td>
             <?php if($row["username"]!=$_SESSION["user"]["username"]){?>
-            <a href="?url=Admin/XoaUser/<?php echo $row['username'] ?>" onclick="return confirm('Bạn có chắc muốn xóa user <?php echo $row['ho_ten']?>')">Xóa</a>
+            <a href="?url=Admin/XoaUser/<?php echo $row['username'] ?>" onclick="return confirm('Bạn có chắc muốn xóa user <?php echo $row['ho_ten']?>')"><img src="https://img.icons8.com/dusk/64/000000/trash.png"/>Xóa</a>
             <?php } ?>
         </td>
     </tr>

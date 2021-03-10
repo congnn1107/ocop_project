@@ -34,7 +34,7 @@
                 </tr>
                 <?php
                     $tong=0;
-                    $count=0;
+                    $status=$params["status"];
                     foreach($list as $item){
                 ?>
                 <tr>
@@ -47,15 +47,14 @@
                 <?php
                         if($item["tong"]!=""){
                             $tong+=$item["tong"];
-                            $count++;
                         }
 
                     }
 
-                    if($count!=count($list)){
+                    if(!$status){
                         $diem_tb = "Chưa có";
                     }else{
-                        $diem_tb = $tong/$count;
+                        $diem_tb = $tong/count($list);
                         $sao = round($diem_tb/20);
                         // echo $sao;
                     }

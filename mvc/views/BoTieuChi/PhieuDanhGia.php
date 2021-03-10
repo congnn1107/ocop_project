@@ -67,7 +67,7 @@
         ?>
         <!-- <button id="btnOK" type="submit">Hoàn Thành</button> -->
     </form>
-    <a href="?url=Admin/QuanLyTieuChi">Trở về</a>
+    <a href="?url=Admin/DanhSachTieuChi">Trở về</a>
     </div>
     <script>
         var enter = false;

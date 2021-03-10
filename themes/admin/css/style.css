@@ -23,9 +23,20 @@ aside{
     height: 100%;
     left: 0; 
     width:20%;
-    background-color: black;
-    color: gray;
+    background-color: rgb(55, 135, 9);
+    color: black;
 }
+aside span{
+    /*background-image: linear-gradient(to right,yellow 10%,white 10%,rgb(247, 103, 211),yellow);
+    color: transparent;
+    background-clip: text;
+    -webkit-background-clip: text;
+    */
+    text-transform: uppercase;
+    color: rgb(208, 226, 43);
+    margin-top: 5px;
+    display: block
+;}
 aside.hide{
     left: -20%;
 }
@@ -52,10 +63,14 @@ aside .nav .title{
     margin: 0.5rem 0 0.5rem 0;
     
 }
+
 aside .nav .nav-items a{
     text-decoration: none;
-    color: steelblue;
-    padding-left: 0.5rem;
+    color: white;
+    padding-left: 1rem;
+}
+aside .nav .nav-items a:hover{
+    text-decoration: underline;
 }
 /*
     Main layout
@@ -63,9 +78,10 @@ aside .nav .nav-items a{
 
 
 .wrapper{
-    height: 100%;
+    height: 100vh;
     width: 80%;
     margin-left: 20%;
+    box-sizing: border-box;
 }
 .wrapper.full{
     margin-left: 0;
@@ -73,31 +89,41 @@ aside .nav .nav-items a{
 }
 
 .wrapper header{
+    z-index: 3;
     position: sticky;
     top: 0;
-    height: 2rem;
-    background-color: black;
+    height: 3rem;
+    background-color: rgb(55, 135, 9);
     color: white;
 }
 .wrapper header .left{
     display: flex;
     flex-direction: row;
     float: left;
+    align-items: center;
+    height: 100%;
 }
 .wrapper header .right{
     position: absolute;
     color: white;
     right: 0;
+    top: 0.55rem;
 }
 .wrapper .content{
     width: 100%;
-    min-height: calc(100vh - 32px - 24.5px); /*make footer always on the bottom of page*/
+    min-height: calc(100vh - 3rem - 48px); /*make footer always on the bottom of page*/
 }
 .wrapper footer{
     width: 100%;
+    height: 48px;
     background-color: gray;
+    display: flex;
+    align-items: center;
     text-align: center;
     color: lightgray;
+}
+.wrapper footer>*{
+    width: 100%;
 }
 .button-menu{
     border: 1px solid white;
@@ -110,15 +136,52 @@ aside .nav .nav-items a{
     border: 1px solid orangered;
 }
 .button-menu .hyphen{
-    width: 20px;
-    height: 3px;
+    width: 40px;
+    height: 6px;
     background-color: rgba(247, 247, 247, 0.884);
     margin: 3px 0;
 }
 .button-menu:hover .hyphen{
     background-color: orange;
 }
-
+.filter{
+    width: fit-content;
+    height: 100%;
+    margin:0.25rem;
+    margin-left: 0.5rem;
+}
+.fiter form{
+    height: 100%;
+    width: 100%;
+}
+.filter form *{
+    display: block;
+    height: 100%;
+    float:left;
+}
+.filter form input{
+    border-right: none;
+    border-top: 1px solid gray;
+    border-left: 1px solid gray;
+    border-bottom: 1px solid gray;
+    border-radius: 10px 0 0 10px;
+    outline: none;
+    padding:1px;
+    color: orange;
+    text-indent: 0.5rem;
+}
+.filter form button{
+    border-left: none;
+    border-top: 1px solid gray;
+    border-right: 1px solid gray;
+    border-bottom: 1px solid gray;
+    outline: none;
+    padding: 2px 5px;
+    background-color: white;
+    border-radius: 0 10px 10px 0;
+    color: gray;
+    cursor: pointer;
+}
 nav{
     
 }
@@ -133,9 +196,6 @@ nav a:hover{
     color: orange;
 }
 .content table{
-    margin: 1rem auto;
-}
-.content table th{
-    background-color: green;
-    color: white;
+    width: 90%;
+    margin: auto;
 }
