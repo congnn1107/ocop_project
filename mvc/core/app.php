@@ -35,7 +35,10 @@
         }
 
         function getProcess(){
-            $url = explode('/',filter_var(trim($_GET['url'])));
+            $url=[];
+            if(isset($_GET['url'])){
+                $url = explode('/',filter_var(trim($_GET['url'])));
+            }
 
             return $url;   
         }

@@ -32,7 +32,7 @@
                 <div class="form-control">
                     <label for="#txtPass">Mật khẩu: </label><input name="txtPass" id="txtPass" value="<?php echo $checked?$_COOKIE["pass"]:"" ?>" type="password"" required>
                 </div>
-                <p id="error-message"><?php echo $params['errMess']?></p>
+                <p id="error-message"><?php echo $params['errMess']??""?></p>
                 <div class="form-check"><input type="checkbox" name="remember" id="remember" <?php  echo $checked?"checked":"" ?>><span>Nhớ mật khẩu?</span></div>
                 <div class="form-btn"><button name="login" type="submit">Đăng nhập</button></div>
                 <!-- <a href="">Quên mật khẩu?</a> -->

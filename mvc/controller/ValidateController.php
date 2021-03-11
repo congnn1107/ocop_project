@@ -34,7 +34,7 @@
                 }
 
                 //xử lí nút nhớ mật khẩu
-                if($_POST["remember"]=="on"){
+                if( isset($_POST['remember']) && $_POST["remember"]=="on"){
                     setcookie("user",$user,time()+(3600*24*15));
                     setcookie("pass",$pass,time()+(3600*24*15));
                     setcookie("remember-pass","true",time()+(3600*24*15));
